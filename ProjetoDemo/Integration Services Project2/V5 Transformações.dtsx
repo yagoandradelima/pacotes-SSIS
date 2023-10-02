@@ -1,0 +1,1324 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2023 11:16:48 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SMTN010"
+  DTS:CreatorName="SACAVALCANTE\yandrade"
+  DTS:DTSID="{65AFA416-0C18-42E8-A4CF-3825FF68ACB9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5314.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Transformação VS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{6511338F-61AF-40BD-8532-1E5D0905DE7D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{505F1FD5-196F-47A0-B0C1-2F24AB0AE65D}"
+      DTS:ObjectName="SMTN010.AdventureWorks2022">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Transformação VS-{505F1FD5-196F-47A0-B0C1-2F24AB0AE65D}SMTN010.AdventureWorks2022;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTN010.SSISDemo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{14ADCD88-E7A3-47A2-9814-4DC95A6B68A6}"
+      DTS:ObjectName="SMTN010.SSISDemo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=SSISDemo;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Transformação VS-{14ADCD88-E7A3-47A2-9814-4DC95A6B68A6}SMTN010.SSISDemo;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Executar SQL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{EA012A56-F7F9-4FC2-8A4D-FEBAB8630921}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Executar SQL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{14ADCD88-E7A3-47A2-9814-4DC95A6B68A6}"
+          SQLTask:SqlStatementSource="DELETE FROM RelacaoProdutos" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Fluxo de Dados"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{56DF50C2-9318-458A-B19A-363BB58663DE}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Fluxo de Dados"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\AW_Products"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="AW_Products"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[Purchasing].[ProductVendor]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\AW_Products.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductID]"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[BusinessEntityID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[BusinessEntityID]"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[BusinessEntityID]"
+                      name="BusinessEntityID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[StandardPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[StandardPrice]"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[StandardPrice]"
+                      name="StandardPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[LastReceiptCost]"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptCost]"
+                      name="LastReceiptCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[LastReceiptDate]"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptDate]"
+                      name="LastReceiptDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[MaxOrderQty]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[MaxOrderQty]"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[MaxOrderQty]"
+                      name="MaxOrderQty"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[BusinessEntityID]"
+                      dataType="i4"
+                      name="BusinessEntityID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[AverageLeadTime]"
+                      dataType="i4"
+                      name="AverageLeadTime" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[StandardPrice]"
+                      dataType="cy"
+                      name="StandardPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[LastReceiptCost]"
+                      dataType="cy"
+                      name="LastReceiptCost" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[LastReceiptDate]"
+                      dataType="dbTimeStamp"
+                      name="LastReceiptDate" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[MinOrderQty]"
+                      dataType="i4"
+                      name="MinOrderQty" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[MaxOrderQty]"
+                      dataType="i4"
+                      name="MaxOrderQty" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[OnOrderQty]"
+                      dataType="i4"
+                      name="OnOrderQty" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitMeasureCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="UnitMeasureCode" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[BusinessEntityID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[BusinessEntityID]"
+                      name="BusinessEntityID" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[StandardPrice]"
+                      dataType="cy"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[StandardPrice]"
+                      name="StandardPrice" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[LastReceiptCost]"
+                      dataType="cy"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[LastReceiptCost]"
+                      name="LastReceiptCost" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[LastReceiptDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[LastReceiptDate]"
+                      name="LastReceiptDate" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[MaxOrderQty]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[MaxOrderQty]"
+                      name="MaxOrderQty" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Charge to SSISDemo"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[RelacaoProdutos]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.SSISDemo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.SSISDemo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].Columns[StandardPrice]"
+                      cachedDataType="cy"
+                      cachedName="StandardPrice"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[Preco_Medio]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[StandardPrice]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].Columns[LastReceiptCost]"
+                      cachedDataType="cy"
+                      cachedName="LastReceiptCost"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[Custo_Ult_Recebimento]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[LastReceiptCost]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].Columns[LastReceiptDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastReceiptDate"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[Data_Ult_Rcebimento]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[LastReceiptDate]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].Columns[MaxOrderQty]"
+                      cachedDataType="i4"
+                      cachedName="MaxOrderQty"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[Quantidade_Ordens_MAX]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[MaxOrderQty]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].Columns[Copy_ProductID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy_ProductID"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_Produto]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Copy_ProductID]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].Columns[Copy_BusinessEntityID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy_BusinessEntityID"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_Loja]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Copy_BusinessEntityID]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].Columns[Ano_Fonte]"
+                      cachedDataType="i4"
+                      cachedName="Ano_Fonte"
+                      cachedSortKeyPosition="-1"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[ano]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Ano_Fonte]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_Produto]"
+                      dataType="wstr"
+                      length="50"
+                      name="ID_Produto" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_Loja]"
+                      dataType="wstr"
+                      length="50"
+                      name="ID_Loja" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[Preco_Medio]"
+                      dataType="r8"
+                      name="Preco_Medio" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[Custo_Ult_Recebimento]"
+                      dataType="r8"
+                      name="Custo_Ult_Recebimento" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[Data_Ult_Rcebimento]"
+                      dataType="dbDate"
+                      name="Data_Ult_Rcebimento" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[Quantidade_Ordens_MAX]"
+                      dataType="i4"
+                      name="Quantidade_Ordens_MAX" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB].ExternalColumns[ano]"
+                      dataType="wstr"
+                      length="50"
+                      name="ano" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Classificar"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Classificar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Classifica os dados de entrada em ordem crescente ou decrescente quando eles não podem ser classificados em sua origem. Por exemplo, classifique dados de vendas por 'customer id' antes de eles serem gravados em um arquivo simples e entregues a outro departamento. Observação: essa transformação não é recomendável para fluxos de dados grandes."
+              name="Classificar"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se a transformação Classificação remove linhas com valores de classificação duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o número máximo de threads a usar para classificação."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada]"
+                  name="Classificar Entrada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[BusinessEntityID]"
+                      cachedDataType="i4"
+                      cachedName="BusinessEntityID"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[BusinessEntityID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[LastReceiptCost]"
+                      cachedDataType="cy"
+                      cachedName="LastReceiptCost"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptCost]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[LastReceiptDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastReceiptDate"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[MaxOrderQty]"
+                      cachedDataType="i4"
+                      cachedName="MaxOrderQty"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[MaxOrderQty]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[Copy_ProductID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy_ProductID"
+                      lineageId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados].Columns[Copy_ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[Copy_BusinessEntityID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy_BusinessEntityID"
+                      lineageId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados].Columns[Copy_BusinessEntityID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[Ano_Fonte]"
+                      cachedDataType="i4"
+                      cachedName="Ano_Fonte"
+                      lineageId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Ano_Fonte]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[Cópia de ProductID]"
+                      cachedDataType="i4"
+                      cachedName="Cópia de ProductID"
+                      lineageId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Outputs[Copiar Saída de Coluna].Columns[Cópia de ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada].Columns[StandardPrice]"
+                      cachedDataType="cy"
+                      cachedName="StandardPrice"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[StandardPrice]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica as opções de comparação para os dados de caractere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica a ordem de classificação da coluna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída]"
+                  isSorted="true"
+                  name="Classificar Saída">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[ProductID]"
+                      name="ProductID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[BusinessEntityID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[BusinessEntityID]"
+                      name="BusinessEntityID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[BusinessEntityID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[LastReceiptCost]"
+                      dataType="cy"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[LastReceiptCost]"
+                      name="LastReceiptCost">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptCost]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[LastReceiptDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[LastReceiptDate]"
+                      name="LastReceiptDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[MaxOrderQty]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[MaxOrderQty]"
+                      name="MaxOrderQty">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[MaxOrderQty]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Copy_ProductID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Copy_ProductID]"
+                      name="Copy_ProductID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados].Columns[Copy_ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Copy_BusinessEntityID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Copy_BusinessEntityID]"
+                      name="Copy_BusinessEntityID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados].Columns[Copy_BusinessEntityID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Ano_Fonte]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Ano_Fonte]"
+                      name="Ano_Fonte"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Ano_Fonte]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Cópia de ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[Cópia de ProductID]"
+                      name="Cópia de ProductID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Outputs[Copiar Saída de Coluna].Columns[Cópia de ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[StandardPrice]"
+                      dataType="cy"
+                      lineageId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída].Columns[StandardPrice]"
+                      name="StandardPrice">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna de entrada associada à coluna de saída."
+                          name="SortColumnId">#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[StandardPrice]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Coluna Derivada"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+              name="Coluna Derivada"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+                  description="Entrada para a Transformação Coluna Derivada"
+                  name="Entrada de Coluna Derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Inputs[Entrada de Coluna Derivada].Columns[LastReceiptDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastReceiptDate"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Coluna Derivada]"
+                  description="Saída Padrão da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  name="Saída de Coluna Derivada"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Ano_Fonte]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Ano_Fonte]"
+                      name="Ano_Fonte"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">[YEAR](#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[LastReceiptDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(LastReceiptDate)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada]"
+                  description="Saída de Erro da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Coluna Derivada"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversão de Dados"
+              name="Convertendo o tipo de dados de VARCHAR para NVARCHAR"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Inputs[Entrada de Conversão de Dados]"
+                  name="Entrada de Conversão de Dados">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Inputs[Entrada de Conversão de Dados].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Inputs[Entrada de Conversão de Dados].Columns[BusinessEntityID]"
+                      cachedDataType="i4"
+                      cachedName="BusinessEntityID"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[BusinessEntityID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados]"
+                  exclusionGroup="1"
+                  name="Saída de Conversão de Dados"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados].Columns[Copy_ProductID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados].Columns[Copy_ProductID]"
+                      name="Copy_ProductID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[ProductID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados].Columns[Copy_BusinessEntityID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados].Columns[Copy_BusinessEntityID]"
+                      name="Copy_BusinessEntityID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[BusinessEntityID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Erro de Conversão de Dados]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Conversão de Dados"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação"
+              componentClassID="Microsoft.CopyMap"
+              contactInfo="Copiar Coluna;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Copia colunas de entrada em novas colunas na saída da transformação. Por exemplo, crie uma cópia da coluna 'address' para que ela possa ser limpa por transformações subsequentes e deixar a coluna original no lugar para fins de auditoria."
+              name="Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação">
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Inputs[Copiar Entrada de Coluna]"
+                  name="Copiar Entrada de Coluna">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Inputs[Copiar Entrada de Coluna].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[ProductID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Outputs[Copiar Saída de Coluna]"
+                  name="Copiar Saída de Coluna"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Inputs[Copiar Entrada de Coluna]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Outputs[Copiar Saída de Coluna].Columns[Cópia de ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Outputs[Copiar Saída de Coluna].Columns[Cópia de ProductID]"
+                      name="Cópia de ProductID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica o identificador de linhagem da coluna a ser copiada."
+                          name="copyColumnId">#{Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Classificar Saída]"
+              endId="Package\Tarefa Fluxo de Dados\Charge to SSISDemo.Inputs[Entrada de Destino OLE DB]"
+              name="Classificar Saída"
+              startId="Package\Tarefa Fluxo de Dados\Classificar.Outputs[Classificar Saída]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Copiar Saída de Coluna]"
+              endId="Package\Tarefa Fluxo de Dados\Classificar.Inputs[Classificar Entrada]"
+              name="Copiar Saída de Coluna"
+              startId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Outputs[Copiar Saída de Coluna]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Coluna Derivada]"
+              endId="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação.Inputs[Copiar Entrada de Coluna]"
+              name="Saída de Coluna Derivada"
+              startId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Outputs[Saída de Coluna Derivada]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Conversão de Dados]"
+              endId="Package\Tarefa Fluxo de Dados\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+              name="Saída de Conversão de Dados"
+              startId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Outputs[Saída de Conversão de Dados]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+              endId="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR.Inputs[Entrada de Conversão de Dados]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Tarefa Fluxo de Dados\AW_Products.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{F5ED317E-FDF8-4DCA-B15C-07246ED2054B}"
+      DTS:From="Package\Tarefa Executar SQL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\Tarefa Fluxo de Dados" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Tarefa Executar SQL"
+          TopLeft="168,26" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Tarefa Fluxo de Dados"
+          TopLeft="164,139" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="256.25,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Tarefa Fluxo de Dados">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="360,42"
+          Id="Package\Tarefa Fluxo de Dados\Convertendo o tipo de dados de VARCHAR para NVARCHAR"
+          TopLeft="14,85" />
+        <NodeLayout
+          Size="472,42"
+          Id="Package\Tarefa Fluxo de Dados\Cópia de CustID, mas não tem coluna na tabela à frente pra absorver a informação"
+          TopLeft="122,233" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Tarefa Fluxo de Dados\Charge to SSISDemo"
+          TopLeft="172,388" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Tarefa Fluxo de Dados\Coluna Derivada"
+          TopLeft="118,164" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Tarefa Fluxo de Dados\AW_Products"
+          TopLeft="123,7" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
+          TopLeft="193.75,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Conversão de Dados]"
+          TopLeft="195,127">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Coluna Derivada]"
+          TopLeft="196,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="162,27"
+              Start="0,0"
+              End="162,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.5"
+                    Point2="0,13.5"
+                    Point3="4,13.5" />
+                  <mssgle:LineSegment
+                    End="158,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="158,13.5"
+                    Point2="162,13.5"
+                    Point3="162,17.5" />
+                  <mssgle:LineSegment
+                    End="162,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Tarefa Fluxo de Dados\Classificar"
+          TopLeft="263,305" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Copiar Saída de Coluna]"
+          TopLeft="358,275">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-32,30"
+              Start="0,0"
+              End="-32,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11"
+                    Point2="0,15"
+                    Point3="-4,15" />
+                  <mssgle:LineSegment
+                    End="-28,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28,15"
+                    Point2="-32,15"
+                    Point3="-32,19" />
+                  <mssgle:LineSegment
+                    End="-32,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Classificar Saída]"
+          TopLeft="326,347">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-65,41"
+              Start="0,0"
+              End="-65,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="-4,20.5" />
+                  <mssgle:LineSegment
+                    End="-61,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-61,20.5"
+                    Point2="-65,20.5"
+                    Point3="-65,24.5" />
+                  <mssgle:LineSegment
+                    End="-65,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\Charge to SSISDemo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\AW_Products">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

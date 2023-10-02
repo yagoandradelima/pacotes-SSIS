@@ -1,0 +1,4 @@
+Custid,Name,ShortName
+2,Alana,lana
+5,Claber,Kaka
+6,julia,Ju

@@ -1,0 +1,3 @@
+Custid,Name,ShortName
+1,karina,kari
+7,Luana,lu
