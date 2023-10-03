@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{3EF50449-75CE-4F12-8E51-75746CF4E0C6}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{93041F37-0094-4058-BEC8-5EB826B683EF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -147,579 +147,607 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Copiando conteúdo de um arquivo"
-      DTS:CreationName="Microsoft.FileSystemTask"
-      DTS:Description="Tarefa Sistema de Arquivos"
-      DTS:DTSID="{54AA4347-1EB8-499A-AFF5-54136E2931F7}"
-      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:refId="Package\Conteiner de Exemplo 01"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{FADC45CC-C5DA-4988-AD6D-EFF1009215D6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Copiando conteúdo de um arquivo"
-      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ObjectName="Conteiner de Exemplo 01">
       <DTS:Variables />
-      <DTS:ObjectData>
-        <FileSystemData
-          TaskOverwriteDestFile="True"
-          TaskSourcePath="{D4A3731E-765C-456B-B386-E0D964E631DC}"
-          TaskDestinationPath="{CDFDA5EF-E4CD-4F07-8CDC-808A7824F479}" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Deletando conteúdo de pasta"
-      DTS:CreationName="Microsoft.FileSystemTask"
-      DTS:Description="Tarefa Sistema de Arquivos"
-      DTS:DTSID="{6B0B2602-BB8F-4637-853F-032AF20AA923}"
-      DTS:ExecutableType="Microsoft.FileSystemTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Deletando conteúdo de pasta"
-      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <FileSystemData
-          TaskOperationType="DeleteDirectoryContent"
-          TaskSourcePath="{125939EF-A44D-42BB-89CB-DF701000332B}" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Deletando dados anteriores da tabela"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Tarefa Executar SQL"
-      DTS:DTSID="{5CD28344-3FCA-4B4D-BD29-A0797782FC45}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Deletando dados anteriores da tabela"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{3CCEF2C2-4F22-4BC9-9A8B-6062D65D24EF}"
-          SQLTask:SqlStatementSource="DELETE FROM [dbo].[dados_extraidos]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Mudança de localidade"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Tarefa Executar SQL"
-      DTS:DTSID="{AE6C187B-E8E8-4A99-9FBC-DE0038A84F13}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Mudança de localidade"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{3CCEF2C2-4F22-4BC9-9A8B-6062D65D24EF}"
-          SQLTask:SqlStatementSource="EXEC [dbo].[mudanca_localidade]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Tarefa Executar Processo"
-      DTS:CreationName="Microsoft.ExecuteProcess"
-      DTS:Description="Tarefa Executar Processo"
-      DTS:DTSID="{358166D1-7453-41E5-B797-7FEE0BC96FC5}"
-      DTS:ExecutableType="Microsoft.ExecuteProcess"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Tarefa Executar Processo"
-      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <ExecuteProcessData
-          Executable="calc.exe" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Tarefa Fluxo de Dados"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Tarefa Fluxo de Dados"
-      DTS:DTSID="{19BD982E-FFB0-49CE-B788-62C00867B092}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Tarefa Fluxo de Dados"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1">
-          <components>
-            <component
-              refId="Package\Tarefa Fluxo de Dados\Destino OLE DB"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
-              description="Destino OLE DB"
-              name="Destino OLE DB"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
-                  name="OpenRowset">[dbo].[dados_extraidos]</property>
-                <property
-                  dataType="System.String"
-                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="O comando SQL a ser executado."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica o modo usado para acessar o banco de dados."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SMTN010.StoreDemo]"
-                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.StoreDemo]"
-                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
-                  errorOrTruncationOperation="Inserir"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="Entrada de Destino OLE DB">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[id]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="id"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[nome]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="nome"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[sobrenome]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="sobrenome"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[genero]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="genero"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[departamento]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="departamento"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DEPARTAMENTO]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[departamento]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[localidade]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="localidade"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
-                      dataType="i4"
-                      name="ID" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="NOME" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="SOBRENOME" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="LOCALIDADE" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="GENERO" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DEPARTAMENTO]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="DEPARTAMENTO" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Saída de Erro de Destino OLE DB"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples"
-              componentClassID="Microsoft.FlatFileSource"
-              contactInfo="Origem de Arquivo Simples;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
-              description="Origem de Arquivo Simples"
-              localeId="1046"
-              name="Origem de Arquivo Simples"
-              usesDispositions="true"
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Conteiner de Exemplo 01\Deletando dados anteriores da tabela"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{5CD28344-3FCA-4B4D-BD29-A0797782FC45}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Deletando dados anteriores da tabela"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3CCEF2C2-4F22-4BC9-9A8B-6062D65D24EF}"
+              SQLTask:SqlStatementSource="DELETE FROM [dbo].[dados_extraidos]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Conteiner de Exemplo 01\Tarefa Executar Processo"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Tarefa Executar Processo"
+          DTS:DTSID="{358166D1-7453-41E5-B797-7FEE0BC96FC5}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarefa Executar Processo"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="calc.exe" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{19BD982E-FFB0-49CE-B788-62C00867B092}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarefa Fluxo de Dados"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
               version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Especifica se colunas de comprimento zero são tratadas como nulas."
-                  name="RetainNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Especifica o nome de uma coluna de saída que contém o nome do arquivo. Se nenhum nome for especificado, nenhuma coluna de saída contendo o nome de arquivo será gerada."
-                  name="FileNameColumnName"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Connections[FlatFileConnection]"
-                  connectionManagerID="Package.ConnectionManagers[dados_extraidos.csv]"
-                  connectionManagerRefId="Package.ConnectionManagers[dados_extraidos.csv]"
-                  name="FlatFileConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples]"
-                  name="Saída de Origem de Arquivo Simples">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
+              <components>
+                <component
+                  refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="Destino OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[dados_extraidos]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SMTN010.StoreDemo]"
+                      connectionManagerRefId="Package.ConnectionManagers[SMTN010.StoreDemo]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[id]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]"
-                      name="id"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[nome]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]"
-                      name="nome"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[sobrenome]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]"
-                      name="sobrenome"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[genero]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]"
-                      name="genero"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[departamento]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[departamento]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[departamento]"
-                      name="departamento"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[localidade]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]"
-                      name="localidade"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[id]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="id" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[nome]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="nome" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[sobrenome]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="sobrenome" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[localidade]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="localidade" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[genero]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="genero" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[departamento]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="departamento" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples]"
-                  isErrorOut="true"
-                  name="Saída de Erro de Origem de Arquivo Simples">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
-                      codePage="1252"
-                      dataType="text"
-                      description="Coluna de Saída de Erro de Origem de Arquivo Simples"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
-                      name="Coluna de Saída de Erro de Origem de Arquivo Simples" />
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem de Arquivo Simples]"
-              endId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
-              name="Saída de Origem de Arquivo Simples"
-              startId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples]" />
-          </paths>
-        </pipeline>
-      </DTS:ObjectData>
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="id"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]" />
+                        <inputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[nome]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="nome"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]" />
+                        <inputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[sobrenome]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="sobrenome"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]" />
+                        <inputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[genero]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="genero"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]" />
+                        <inputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[departamento]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="departamento"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DEPARTAMENTO]"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[departamento]" />
+                        <inputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[localidade]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="localidade"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NOME" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SOBRENOME" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LOCALIDADE" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="GENERO" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DEPARTAMENTO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="DEPARTAMENTO" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Origem de Arquivo Simples;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+                  description="Origem de Arquivo Simples"
+                  localeId="1046"
+                  name="Origem de Arquivo Simples"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Especifica se colunas de comprimento zero são tratadas como nulas."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome de uma coluna de saída que contém o nome do arquivo. Se nenhum nome for especificado, nenhuma coluna de saída contendo o nome de arquivo será gerada."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[dados_extraidos.csv]"
+                      connectionManagerRefId="Package.ConnectionManagers[dados_extraidos.csv]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples]"
+                      name="Saída de Origem de Arquivo Simples">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[id]"
+                          length="50"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]"
+                          name="id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se os dados estão em formato binário."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[nome]"
+                          length="50"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]"
+                          name="nome"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se os dados estão em formato binário."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[sobrenome]"
+                          length="50"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]"
+                          name="sobrenome"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se os dados estão em formato binário."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[genero]"
+                          length="50"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]"
+                          name="genero"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se os dados estão em formato binário."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[departamento]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[departamento]"
+                          length="50"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[departamento]"
+                          name="departamento"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se os dados estão em formato binário."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[localidade]"
+                          length="50"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]"
+                          name="localidade"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica se os dados estão em formato binário."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[nome]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="nome" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[sobrenome]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="sobrenome" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[localidade]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="localidade" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[genero]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="genero" />
+                        <externalMetadataColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[departamento]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="departamento" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem de Arquivo Simples">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Coluna de Saída de Erro de Origem de Arquivo Simples"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
+                          name="Coluna de Saída de Erro de Origem de Arquivo Simples" />
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados.Paths[Saída de Origem de Arquivo Simples]"
+                  endId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem de Arquivo Simples"
+                  startId="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Conteiner de Exemplo 01.PrecedenceConstraints[Restrição]"
+          DTS:CreationName=""
+          DTS:DTSID="{95AFD267-1A51-4DEF-907C-BFBBB0C8293D}"
+          DTS:EvalOp="1"
+          DTS:Expression="DATEPART( &quot;DD&quot;, GETDATE()) &lt; 4"
+          DTS:From="Package\Conteiner de Exemplo 01\Deletando dados anteriores da tabela"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição"
+          DTS:To="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Conteiner de Exemplo 01.PrecedenceConstraints[Restrição 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{7E095CD9-715B-41BE-93AB-6412E0610A08}"
+          DTS:From="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição 1"
+          DTS:To="Package\Conteiner de Exemplo 01\Tarefa Executar Processo"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Conteiner de Exemplo 02"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{A729D669-13D4-4F29-AA19-D029802F5680}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Conteiner de Exemplo 02">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Conteiner de Exemplo 02\Copiando conteúdo de um arquivo"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="Tarefa Sistema de Arquivos"
+          DTS:DTSID="{54AA4347-1EB8-499A-AFF5-54136E2931F7}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Copiando conteúdo de um arquivo"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="{D4A3731E-765C-456B-B386-E0D964E631DC}"
+              TaskDestinationPath="{CDFDA5EF-E4CD-4F07-8CDC-808A7824F479}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Conteiner de Exemplo 02\Deletando conteúdo de pasta"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="Tarefa Sistema de Arquivos"
+          DTS:DTSID="{6B0B2602-BB8F-4637-853F-032AF20AA923}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Deletando conteúdo de pasta"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="DeleteDirectoryContent"
+              TaskSourcePath="{125939EF-A44D-42BB-89CB-DF701000332B}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Conteiner de Exemplo 02\Mudança de localidade"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{AE6C187B-E8E8-4A99-9FBC-DE0038A84F13}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mudança de localidade"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3CCEF2C2-4F22-4BC9-9A8B-6062D65D24EF}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[mudanca_localidade]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Conteiner de Exemplo 02.PrecedenceConstraints[Restrição 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{53D8B37F-5B8A-4743-8161-0AC08FD69315}"
+          DTS:From="Package\Conteiner de Exemplo 02\Mudança de localidade"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição 2"
+          DTS:To="Package\Conteiner de Exemplo 02\Copiando conteúdo de um arquivo" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Conteiner de Exemplo 02.PrecedenceConstraints[Restrição 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{9145562A-BCB8-48BA-8028-A4CD59DABB64}"
+          DTS:From="Package\Conteiner de Exemplo 02\Mudança de localidade"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição 3"
+          DTS:To="Package\Conteiner de Exemplo 02\Deletando conteúdo de pasta"
+          DTS:Value="1" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restrição]"
       DTS:CreationName=""
-      DTS:DTSID="{57FD064A-47A4-4D90-A7DD-4527883F519D}"
-      DTS:EvalOp="1"
-      DTS:Expression="DATEPART( &quot;DD&quot;, GETDATE()) &lt; 4"
-      DTS:From="Package\Deletando dados anteriores da tabela"
+      DTS:DTSID="{6D733F68-74D6-4176-9988-56A7D3C375FA}"
+      DTS:From="Package\Conteiner de Exemplo 01"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restrição"
-      DTS:To="Package\Tarefa Fluxo de Dados" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
-      DTS:CreationName=""
-      DTS:DTSID="{81BDFDC0-2BB2-4B0D-8804-7E5F60489539}"
-      DTS:From="Package\Tarefa Fluxo de Dados"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restrição 1"
-      DTS:To="Package\Mudança de localidade" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restrição 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{53D8B37F-5B8A-4743-8161-0AC08FD69315}"
-      DTS:From="Package\Mudança de localidade"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restrição 2"
-      DTS:To="Package\Copiando conteúdo de um arquivo" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restrição 3]"
-      DTS:CreationName=""
-      DTS:DTSID="{9145562A-BCB8-48BA-8028-A4CD59DABB64}"
-      DTS:From="Package\Mudança de localidade"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restrição 3"
-      DTS:To="Package\Deletando conteúdo de pasta"
-      DTS:Value="1" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restrição 4]"
-      DTS:CreationName=""
-      DTS:DTSID="{53AD47B7-5A00-4F4D-BEE8-BA0AD289328D}"
-      DTS:From="Package\Tarefa Fluxo de Dados"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restrição 4"
-      DTS:To="Package\Tarefa Executar Processo"
-      DTS:Value="2" />
+      DTS:To="Package\Conteiner de Exemplo 02" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
@@ -734,28 +762,20 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="241,42"
-          Id="Package\Copiando conteúdo de um arquivo"
-          TopLeft="42,291" />
-        <NodeLayout
-          Size="217,42"
-          Id="Package\Deletando conteúdo de pasta"
-          TopLeft="369,288" />
-        <NodeLayout
           Size="255,42"
-          Id="Package\Deletando dados anteriores da tabela"
-          TopLeft="168,50" />
-        <NodeLayout
-          Size="186,42"
-          Id="Package\Mudança de localidade"
-          TopLeft="207,211" />
+          Id="Package\Conteiner de Exemplo 01\Deletando dados anteriores da tabela"
+          TopLeft="5.5,5.5" />
         <NodeLayout
           Size="185,42"
-          Id="Package\Tarefa Fluxo de Dados"
-          TopLeft="203,133" />
+          Id="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados"
+          TopLeft="40.5,88.5" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Conteiner de Exemplo 01\Tarefa Executar Processo"
+          TopLeft="312.5,87.5" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restrição]"
-          TopLeft="295.5,92">
+          Id="Package\Conteiner de Exemplo 01.PrecedenceConstraints[Restrição]"
+          TopLeft="133,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -778,115 +798,19 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restrição 1]"
-          TopLeft="297.75,175">
+          Id="Package\Conteiner de Exemplo 01.PrecedenceConstraints[Restrição 1]"
+          TopLeft="225.5,109">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36"
+              EndConnector="86.9999999999999,0"
               Start="0,0"
-              End="0,28.5">
+              End="79.4999999999999,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restrição 2]"
-          TopLeft="270.333333333333,253">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-107.833333333333,38"
-              Start="0,0"
-              End="-107.833333333333,30.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.3944562899787" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.3944562899787"
-                    Point2="0,15.3944562899787"
-                    Point3="-4,15.3944562899787" />
-                  <mssgle:LineSegment
-                    End="-103.833333333333,15.3944562899787" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-103.833333333333,15.3944562899787"
-                    Point2="-107.833333333333,15.3944562899787"
-                    Point3="-107.833333333333,19.3944562899787" />
-                  <mssgle:LineSegment
-                    End="-107.833333333333,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restrição 3]"
-          TopLeft="329.666666666667,253">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="147.833333333333,35"
-              Start="0,0"
-              End="147.833333333333,27.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,10.1791044776119" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.1791044776119"
-                    Point2="0,14.1791044776119"
-                    Point3="4,14.1791044776119" />
-                  <mssgle:LineSegment
-                    End="143.833333333333,14.1791044776119" />
-                  <mssgle:CubicBezierSegment
-                    Point1="143.833333333333,14.1791044776119"
-                    Point2="147.833333333333,14.1791044776119"
-                    Point3="147.833333333333,18.1791044776119" />
-                  <mssgle:LineSegment
-                    End="147.833333333333,27.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="61.8083072916667,19.1791044776119,24.21671875,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="198,42"
-          Id="Package\Tarefa Executar Processo"
-          TopLeft="475,132" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restrição 4]"
-          TopLeft="388,153.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="87,0"
-              Start="0,0"
-              End="79.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="79.5,0" />
+                    End="79.4999999999999,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -897,24 +821,154 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="533,186"
+          Size="533,229"
+          Id="Package\Conteiner de Exemplo 01"
+          TopLeft="39.8571428571428,14.8571428571428" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Conteiner de Exemplo 02\Copiando conteúdo de um arquivo"
+          TopLeft="18.3571428571429,106.928571428572" />
+        <EdgeLayout
+          Id="Package\Conteiner de Exemplo 02.PrecedenceConstraints[Restrição 2]"
+          TopLeft="205.261904761905,56.0714285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-66.4047619047618,50.857142857143"
+              Start="0,0"
+              End="-66.4047619047618,43.357142857143">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.6031069144076" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.6031069144076"
+                    Point2="0,20.6031069144076"
+                    Point3="-4,20.6031069144076" />
+                  <mssgle:LineSegment
+                    End="-62.4047619047618,20.6031069144076" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-62.4047619047618,20.6031069144076"
+                    Point2="-66.4047619047618,20.6031069144076"
+                    Point3="-66.4047619047618,24.6031069144076" />
+                  <mssgle:LineSegment
+                    End="-66.4047619047618,43.357142857143" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Conteiner de Exemplo 02\Deletando conteúdo de pasta"
+          TopLeft="273.928571428571,105.357142857143" />
+        <EdgeLayout
+          Id="Package\Conteiner de Exemplo 02.PrecedenceConstraints[Restrição 3]"
+          TopLeft="264.595238095238,56.0714285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="117.833333333333,49.2857142857144"
+              Start="0,0"
+              End="117.833333333333,41.7857142857144">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.9664940603108" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.9664940603108"
+                    Point2="0,19.9664940603108"
+                    Point3="4,19.9664940603108" />
+                  <mssgle:LineSegment
+                    End="113.833333333333,19.9664940603108" />
+                  <mssgle:CubicBezierSegment
+                    Point1="113.833333333333,19.9664940603108"
+                    Point2="117.833333333333,19.9664940603108"
+                    Point3="117.833333333333,23.9664940603108" />
+                  <mssgle:LineSegment
+                    End="117.833333333333,41.7857142857144" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="46.8083072916667,24.9664940603108,24.21671875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Conteiner de Exemplo 02\Mudança de localidade"
+          TopLeft="141.928571428571,14.0714285714286" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="496,204"
+          Size="496,247"
+          Id="Package\Conteiner de Exemplo 02"
+          TopLeft="631,20.0000000000001" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="572.857142857143,129.357142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="58.1428571428572,14.1428571428572"
+              Start="0,0"
+              End="50.6428571428572,14.1428571428572">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25.0714285714286,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.0714285714286,0"
+                    Point2="29.0714285714286,0"
+                    Point3="29.0714285714286,4" />
+                  <mssgle:LineSegment
+                    End="29.0714285714286,10.1428571428572" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.0714285714286,10.1428571428572"
+                    Point2="29.0714285714286,14.1428571428572"
+                    Point3="33.0714285714286,14.1428571428572" />
+                  <mssgle:LineSegment
+                    End="50.6428571428572,14.1428571428572" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Tarefa Fluxo de Dados">
+    design-time-name="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="206,42"
-          Id="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples"
+          Id="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Origem de Arquivo Simples"
           TopLeft="204,70" />
         <NodeLayout
           Size="153,42"
-          Id="Package\Tarefa Fluxo de Dados\Destino OLE DB"
+          Id="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB"
           TopLeft="228,172" />
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem de Arquivo Simples]"
+          Id="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados.Paths[Saída de Origem de Arquivo Simples]"
           TopLeft="305.75,112">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -939,7 +993,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Destino OLE DB">
+    design-time-name="Package\Conteiner de Exemplo 01\Tarefa Fluxo de Dados\Destino OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
