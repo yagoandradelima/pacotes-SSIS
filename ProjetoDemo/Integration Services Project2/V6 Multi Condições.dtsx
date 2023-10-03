@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="V6 Multi Condições"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{54BF4CB1-EB0E-416D-A59C-A4320AD39734}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{D7F7534E-F470-4207-821A-A9478BD27AD2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1445,6 +1445,10 @@
           Id="Package\Deletando dados anteriores DB SSISDemo"
           TopLeft="9,26" />
         <NodeLayout
+          Size="281,42"
+          Id="Package\Deletando dados anteriores DB StoreDemo"
+          TopLeft="329,23" />
+        <NodeLayout
           Size="185,42"
           Id="Package\Tarefa Fluxo de Dados"
           TopLeft="164,139" />
@@ -1482,10 +1486,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="281,42"
-          Id="Package\Deletando dados anteriores DB StoreDemo"
-          TopLeft="329,23" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 1]"
           TopLeft="469.5,65">
@@ -1807,7 +1807,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\AW_Products">
+    design-time-name="Package\Tarefa Fluxo de Dados\Charge to StoreDemo">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1820,7 +1820,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Charge to StoreDemo">
+    design-time-name="Package\Tarefa Fluxo de Dados\AW_Products">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
