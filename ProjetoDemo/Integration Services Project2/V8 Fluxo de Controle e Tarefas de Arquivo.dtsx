@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="27"
-  DTS:VersionGUID="{A07DE599-A4CF-46F8-A391-013C777BCEDC}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{3EF50449-75CE-4F12-8E51-75746CF4E0C6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -155,7 +155,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Copiando conteúdo de um arquivo"
       DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <FileSystemData
@@ -173,7 +173,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Deletando conteúdo de pasta"
       DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <FileSystemData
@@ -213,6 +213,22 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{3CCEF2C2-4F22-4BC9-9A8B-6062D65D24EF}"
           SQLTask:SqlStatementSource="EXEC [dbo].[mudanca_localidade]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Executar Processo"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Tarefa Executar Processo"
+      DTS:DTSID="{358166D1-7453-41E5-B797-7FEE0BC96FC5}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Executar Processo"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="calc.exe" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -664,6 +680,8 @@
       DTS:refId="Package.PrecedenceConstraints[Restrição]"
       DTS:CreationName=""
       DTS:DTSID="{57FD064A-47A4-4D90-A7DD-4527883F519D}"
+      DTS:EvalOp="1"
+      DTS:Expression="DATEPART( &quot;DD&quot;, GETDATE()) &lt; 4"
       DTS:From="Package\Deletando dados anteriores da tabela"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restrição"
@@ -676,6 +694,32 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restrição 1"
       DTS:To="Package\Mudança de localidade" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{53D8B37F-5B8A-4743-8161-0AC08FD69315}"
+      DTS:From="Package\Mudança de localidade"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 2"
+      DTS:To="Package\Copiando conteúdo de um arquivo" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{9145562A-BCB8-48BA-8028-A4CD59DABB64}"
+      DTS:From="Package\Mudança de localidade"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 3"
+      DTS:To="Package\Deletando conteúdo de pasta"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{53AD47B7-5A00-4F4D-BEE8-BA0AD289328D}"
+      DTS:From="Package\Tarefa Fluxo de Dados"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 4"
+      DTS:To="Package\Tarefa Executar Processo"
+      DTS:Value="2" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
@@ -688,53 +732,65 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="241,42"
           Id="Package\Copiando conteúdo de um arquivo"
-          TopLeft="327,159" />
+          TopLeft="42,291" />
         <NodeLayout
           Size="217,42"
           Id="Package\Deletando conteúdo de pasta"
-          TopLeft="337,102" />
+          TopLeft="369,288" />
         <NodeLayout
           Size="255,42"
           Id="Package\Deletando dados anteriores da tabela"
-          TopLeft="66,44" />
+          TopLeft="168,50" />
         <NodeLayout
           Size="186,42"
           Id="Package\Mudança de localidade"
-          TopLeft="74,212" />
+          TopLeft="207,211" />
         <NodeLayout
           Size="185,42"
           Id="Package\Tarefa Fluxo de Dados"
-          TopLeft="93,138" />
+          TopLeft="203,133" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição]"
-          TopLeft="193.5,86">
+          TopLeft="295.5,92">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-8,52"
+              EndConnector="0,41"
               Start="0,0"
-              End="-8,44.5">
+              End="0,33.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22"
-                    Point2="0,26"
-                    Point3="-4,26" />
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,8.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 1]"
+          TopLeft="297.75,175">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-4,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-4,26"
-                    Point2="-8,26"
-                    Point3="-8,30" />
-                  <mssgle:LineSegment
-                    End="-8,44.5" />
+                    End="0,28.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -744,37 +800,101 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restrição 1]"
-          TopLeft="185.5,180">
+          Id="Package.PrecedenceConstraints[Restrição 2]"
+          TopLeft="270.333333333333,253">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-18.5,32"
+              EndConnector="-107.833333333333,38"
               Start="0,0"
-              End="-18.5,24.5">
+              End="-107.833333333333,30.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12" />
+                    End="0,11.3944562899787" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12"
-                    Point2="0,16"
-                    Point3="-4,16" />
+                    Point1="0,11.3944562899787"
+                    Point2="0,15.3944562899787"
+                    Point3="-4,15.3944562899787" />
                   <mssgle:LineSegment
-                    End="-14.5,16" />
+                    End="-103.833333333333,15.3944562899787" />
                   <mssgle:CubicBezierSegment
-                    Point1="-14.5,16"
-                    Point2="-18.5,16"
-                    Point3="-18.5,20" />
+                    Point1="-103.833333333333,15.3944562899787"
+                    Point2="-107.833333333333,15.3944562899787"
+                    Point3="-107.833333333333,19.3944562899787" />
                   <mssgle:LineSegment
-                    End="-18.5,24.5" />
+                    End="-107.833333333333,30.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 3]"
+          TopLeft="329.666666666667,253">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="147.833333333333,35"
+              Start="0,0"
+              End="147.833333333333,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.1791044776119" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.1791044776119"
+                    Point2="0,14.1791044776119"
+                    Point3="4,14.1791044776119" />
+                  <mssgle:LineSegment
+                    End="143.833333333333,14.1791044776119" />
+                  <mssgle:CubicBezierSegment
+                    Point1="143.833333333333,14.1791044776119"
+                    Point2="147.833333333333,14.1791044776119"
+                    Point3="147.833333333333,18.1791044776119" />
+                  <mssgle:LineSegment
+                    End="147.833333333333,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="61.8083072916667,19.1791044776119,24.21671875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Tarefa Executar Processo"
+          TopLeft="475,132" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 4]"
+          TopLeft="388,153.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87,0"
+              Start="0,0"
+              End="79.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="79.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="16.73044921875,5,46.0391015625,10.1201171875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
