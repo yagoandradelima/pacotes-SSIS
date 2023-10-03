@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{FB508694-ECE1-412B-ABBB-69CD891F9B5A}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{2C40146B-E5D7-4971-B9FF-559A9DB91A29}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -109,6 +109,18 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTN010.SSISDemo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{09433DA4-3C1C-40E5-B199-441F2E73098B}"
+      DTS:ObjectName="SMTN010.SSISDemo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=SSISDemo;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{09433DA4-3C1C-40E5-B199-441F2E73098B}SMTN010.SSISDemo;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SMTN010.StoreDemo]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{837CC94F-74FF-47D8-B188-AB3BF360E23D}"
@@ -130,6 +142,15 @@
       <DTS:Property
         DTS:DataType="3"
         DTS:Name="ParameterValue">25</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{9FE0DD39-5DD6-4E54-97C2-D00CAB5DA9F7}"
+      DTS:ObjectName="src_cnt">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
@@ -159,6 +180,23 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{837CC94F-74FF-47D8-B188-AB3BF360E23D}"
           SQLTask:SqlStatementSource="DELETE FROM [dbo].[dados_sistema]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Executar SQL 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{89956782-71DB-4B69-8464-8ACDF0B38BB8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Executar SQL 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{837CC94F-74FF-47D8-B188-AB3BF360E23D}"
+          SQLTask:SqlStatementSource="SELECT COUNT(1) cnt FROM [dbo].[dados_sistema]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -952,6 +990,481 @@
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Fluxo de Dados 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{64DD0F84-B438-49F9-AA97-A9EA60189205}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Fluxo de Dados 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Destino OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[dados_sistema_dest]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.SSISDemo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.SSISDemo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[NOME]"
+                      cachedDataType="wstr"
+                      cachedLength="140"
+                      cachedName="NOME"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOME]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SOBRENOME]"
+                      cachedDataType="wstr"
+                      cachedLength="140"
+                      cachedName="SOBRENOME"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SOBRENOME]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[LOCALIDADE]"
+                      cachedDataType="wstr"
+                      cachedLength="140"
+                      cachedName="LOCALIDADE"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LOCALIDADE]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[GENERO]"
+                      cachedDataType="wstr"
+                      cachedLength="140"
+                      cachedName="GENERO"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[GENERO]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[EMAIL]"
+                      cachedDataType="wstr"
+                      cachedLength="140"
+                      cachedName="EMAIL"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[UNIVERSIDADE]"
+                      cachedDataType="wstr"
+                      cachedLength="140"
+                      cachedName="UNIVERSIDADE"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UNIVERSIDADE]" />
+                    <inputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[MODELO_CARRO]"
+                      cachedDataType="wstr"
+                      cachedLength="140"
+                      cachedName="MODELO_CARRO"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[MODELO_CARRO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                      dataType="wstr"
+                      length="140"
+                      name="NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
+                      dataType="wstr"
+                      length="140"
+                      name="SOBRENOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
+                      dataType="wstr"
+                      length="140"
+                      name="LOCALIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
+                      dataType="wstr"
+                      length="140"
+                      name="GENERO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
+                      dataType="wstr"
+                      length="140"
+                      name="EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      dataType="wstr"
+                      length="140"
+                      name="UNIVERSIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
+                      dataType="wstr"
+                      length="140"
+                      name="MODELO_CARRO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[dados_sistema]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.StoreDemo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.StoreDemo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                      name="NOME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SOBRENOME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SOBRENOME]"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SOBRENOME]"
+                      name="SOBRENOME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LOCALIDADE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LOCALIDADE]"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LOCALIDADE]"
+                      name="LOCALIDADE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[GENERO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[GENERO]"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[GENERO]"
+                      name="GENERO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[EMAIL]"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]"
+                      name="EMAIL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UNIVERSIDADE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UNIVERSIDADE]"
+                      name="UNIVERSIDADE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[MODELO_CARRO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[MODELO_CARRO]"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[MODELO_CARRO]"
+                      name="MODELO_CARRO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                      dataType="wstr"
+                      length="140"
+                      name="NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SOBRENOME]"
+                      dataType="wstr"
+                      length="140"
+                      name="SOBRENOME" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LOCALIDADE]"
+                      dataType="wstr"
+                      length="140"
+                      name="LOCALIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[GENERO]"
+                      dataType="wstr"
+                      length="140"
+                      name="GENERO" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[EMAIL]"
+                      dataType="wstr"
+                      length="140"
+                      name="EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      dataType="wstr"
+                      length="140"
+                      name="UNIVERSIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[MODELO_CARRO]"
+                      dataType="wstr"
+                      length="140"
+                      name="MODELO_CARRO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                      dataType="wstr"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                      name="NOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SOBRENOME]"
+                      dataType="wstr"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SOBRENOME]"
+                      name="SOBRENOME" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LOCALIDADE]"
+                      dataType="wstr"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LOCALIDADE]"
+                      name="LOCALIDADE" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[GENERO]"
+                      dataType="wstr"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[GENERO]"
+                      name="GENERO" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[EMAIL]"
+                      dataType="wstr"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[EMAIL]"
+                      name="EMAIL" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UNIVERSIDADE]"
+                      dataType="wstr"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UNIVERSIDADE]"
+                      name="UNIVERSIDADE" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[MODELO_CARRO]"
+                      dataType="wstr"
+                      length="140"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[MODELO_CARRO]"
+                      name="MODELO_CARRO" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Tarefa Fluxo de Dados 1.Paths[Saída de Origem OLE DB]"
+              endId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -964,6 +1477,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restrição"
       DTS:To="Package\Tarefa Fluxo de Dados" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4EE3649A-5E4F-40C9-B63F-1350227D26B3}"
+      DTS:From="Package\Tarefa Fluxo de Dados"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 1"
+      DTS:To="Package\Tarefa Executar SQL 1" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
@@ -976,37 +1497,79 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="176,42"
           Id="Package\Tarefa Executar SQL"
-          TopLeft="164,27" />
+          TopLeft="50,55" />
         <NodeLayout
           Size="185,42"
           Id="Package\Tarefa Fluxo de Dados"
-          TopLeft="167,133" />
+          TopLeft="42,150" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição]"
-          TopLeft="255.75,69">
+          TopLeft="136.25,97">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,64"
+              EndConnector="0,53"
               Start="0,0"
-              End="0,56.5">
+              End="0,45.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,56.5" />
+                    End="0,45.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,20.25,16,16"
+              BoundingBox="-8,14.75,16,16"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Tarefa Executar SQL 1"
+          TopLeft="137,242" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Tarefa Fluxo de Dados 1"
+          TopLeft="196,326" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 1]"
+          TopLeft="134.5,192">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="95,50"
+              Start="0,0"
+              End="95,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="4,25" />
+                  <mssgle:LineSegment
+                    End="91,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="91,25"
+                    Point2="95,25"
+                    Point3="95,29" />
+                  <mssgle:LineSegment
+                    End="95,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1020,41 +1583,29 @@
         <NodeLayout
           Size="153,42"
           Id="Package\Tarefa Fluxo de Dados\Destino OLE DB"
-          TopLeft="88,203" />
+          TopLeft="89,174" />
         <NodeLayout
           Size="206,42"
           Id="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples"
-          TopLeft="52,17" />
+          TopLeft="62,15" />
         <NodeLayout
           Size="176,42"
           Id="Package\Tarefa Fluxo de Dados\Conversão de Dados"
-          TopLeft="245,117" />
+          TopLeft="82,93" />
         <EdgeLayout
           Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem de Arquivo Simples]"
-          TopLeft="155,59">
+          TopLeft="167.5,57">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="178,58"
+              EndConnector="0,36"
               Start="0,0"
-              End="178,50.5">
+              End="0,28.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25"
-                    Point2="0,29"
-                    Point3="4,29" />
-                  <mssgle:LineSegment
-                    End="174,29" />
-                  <mssgle:CubicBezierSegment
-                    Point1="174,29"
-                    Point2="178,29"
-                    Point3="178,33" />
-                  <mssgle:LineSegment
-                    End="178,50.5" />
+                    End="0,28.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1065,30 +1616,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Conversão de Dados]"
-          TopLeft="333,159">
+          TopLeft="167.75,135">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-168.5,44"
+              EndConnector="0,39"
               Start="0,0"
-              End="-168.5,36.5">
+              End="0,31.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,18"
-                    Point2="0,22"
-                    Point3="-4,22" />
-                  <mssgle:LineSegment
-                    End="-164.5,22" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-164.5,22"
-                    Point2="-168.5,22"
-                    Point3="-168.5,26" />
-                  <mssgle:LineSegment
-                    End="-168.5,36.5" />
+                    End="0,31.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1102,6 +1641,82 @@
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Tarefa Fluxo de Dados\Destino OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Tarefa Fluxo de Dados 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Tarefa Fluxo de Dados 1\Destino OLE DB"
+          TopLeft="190,157" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Tarefa Fluxo de Dados 1\Origem OLE DB"
+          TopLeft="199,41" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados 1.Paths[Saída de Origem OLE DB]"
+          TopLeft="275,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.5,74"
+              Start="0,0"
+              End="-8.5,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="-4,37" />
+                  <mssgle:LineSegment
+                    End="-4.5,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.5,37"
+                    Point2="-8.5,37"
+                    Point3="-8.5,41" />
+                  <mssgle:LineSegment
+                    End="-8.5,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados 1\Destino OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados 1\Origem OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
