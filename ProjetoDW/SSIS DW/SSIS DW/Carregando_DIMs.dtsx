@@ -1,0 +1,2340 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2023 11:18:32 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SMTN010"
+  DTS:CreatorName="SACAVALCANTE\yandrade"
+  DTS:DTSID="{9EEE8044-D396-4AB7-B620-2CB92D15209F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5314.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{C6362C81-0386-4C23-BB58-88AC7AD66108}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{55ABA0C6-A14E-4109-99F1-222991FC2FED}"
+      DTS:ObjectName="SMTN010.AdventureWorks2022">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{55ABA0C6-A14E-4109-99F1-222991FC2FED}SMTN010.AdventureWorks2022;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{87F9FBC7-4EF6-4DBD-B4DC-46AA970E622B}"
+      DTS:ObjectName="SMTN010.AWN_STG_Demo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=AWN_STG_Demo;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{87F9FBC7-4EF6-4DBD-B4DC-46AA970E622B}SMTN010.AWN_STG_Demo;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\srcBusiness_Entity para stgBusiness_Entity"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{910C7838-47CF-4D33-86F8-F06B5B82E360}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="srcBusiness_Entity para stgBusiness_Entity"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+              name="Coluna Derivada"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+                  description="Entrada para a Transformação Coluna Derivada"
+                  name="Entrada de Coluna Derivada">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Coluna Derivada]"
+                  description="Saída Padrão da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  name="Saída de Coluna Derivada"
+                  synchronousInputId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[SSISTrackID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[SSISTrackID]"
+                      name="SSISTrackID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">@[System::ServerExecutionID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::ServerExecutionID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Create_Dt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Create_Dt]"
+                      name="Create_Dt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada]"
+                  description="Saída de Erro da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Coluna Derivada"
+                  synchronousInputId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Destino OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[erp].[Business_Entity]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[BusinessEntityID]"
+                      cachedDataType="i4"
+                      cachedName="BusinessEntityID"
+                      externalMetadataColumnId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[BusinessEntityID]"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[BusinessEntityID]" />
+                    <inputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[rowguid]"
+                      cachedDataType="guid"
+                      cachedName="rowguid"
+                      externalMetadataColumnId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[rowguid]"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]" />
+                    <inputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      externalMetadataColumnId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SSISTrackID]"
+                      cachedDataType="i8"
+                      cachedName="SSISTrackID"
+                      externalMetadataColumnId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SSISTrackId]"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[SSISTrackID]" />
+                    <inputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Create_Dt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Create_Dt"
+                      externalMetadataColumnId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Created_Dt]"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Create_Dt]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[rowguid]"
+                      dataType="guid"
+                      name="rowguid" />
+                    <externalMetadataColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[BusinessEntityID]"
+                      dataType="i4"
+                      name="BusinessEntityID" />
+                    <externalMetadataColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Created_Dt]"
+                      dataType="dbTimeStamp"
+                      name="Created_Dt" />
+                    <externalMetadataColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SSISTrackId]"
+                      dataType="i4"
+                      name="SSISTrackId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[Person].[BusinessEntity]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[BusinessEntityID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[BusinessEntityID]"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[BusinessEntityID]"
+                      name="BusinessEntityID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                      name="rowguid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[BusinessEntityID]"
+                      dataType="i4"
+                      name="BusinessEntityID" />
+                    <externalMetadataColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                      dataType="guid"
+                      name="rowguid" />
+                    <externalMetadataColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[BusinessEntityID]"
+                      dataType="i4"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[BusinessEntityID]"
+                      name="BusinessEntityID" />
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                      dataType="guid"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                      name="rowguid" />
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\srcBusiness_Entity para stgBusiness_Entity.Paths[Saída de Coluna Derivada]"
+              endId="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Coluna Derivada"
+              startId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Outputs[Saída de Coluna Derivada]" />
+            <path
+              refId="Package\srcBusiness_Entity para stgBusiness_Entity.Paths[Saída de Origem OLE DB]"
+              endId="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+              name="Saída de Origem OLE DB"
+              startId="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\srcCurrency para stgCurency"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{4B89B1C4-140B-4EF7-8543-7A38D867DC56}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="srcCurrency para stgCurency"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\srcCurrency para stgCurency\Coluna Derivada"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+              name="Coluna Derivada"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\srcCurrency para stgCurency\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+                  description="Entrada para a Transformação Coluna Derivada"
+                  name="Entrada de Coluna Derivada">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Coluna Derivada]"
+                  description="Saída Padrão da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  name="Saída de Coluna Derivada"
+                  synchronousInputId="Package\srcCurrency para stgCurency\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[SSISTrackID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[SSISTrackID]"
+                      name="SSISTrackID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">@[System::ServerExecutionID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::ServerExecutionID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Created_Dt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Created_Dt]"
+                      name="Created_Dt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada]"
+                  description="Saída de Erro da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Coluna Derivada"
+                  synchronousInputId="Package\srcCurrency para stgCurency\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\srcCurrency para stgCurency\Destino OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Destino OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[erp].[Currency]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\srcCurrency para stgCurency\Destino OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      externalMetadataColumnId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CurrencyCode]"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CurrencyCode]" />
+                    <inputColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Name]"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      externalMetadataColumnId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SSISTrackID]"
+                      cachedDataType="i8"
+                      cachedName="SSISTrackID"
+                      externalMetadataColumnId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SSISTrackId]"
+                      lineageId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[SSISTrackID]" />
+                    <inputColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Created_Dt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Created_Dt"
+                      externalMetadataColumnId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Created_Dt]"
+                      lineageId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Created_Dt]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CurrencyCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="CurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Created_Dt]"
+                      dataType="dbTimeStamp"
+                      name="Created_Dt" />
+                    <externalMetadataColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SSISTrackId]"
+                      dataType="i4"
+                      name="SSISTrackId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\srcCurrency para stgCurency\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcCurrency para stgCurency\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcCurrency para stgCurency\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\srcCurrency para stgCurency\Origem OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[Sales].[Currency]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\srcCurrency para stgCurency\Origem OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CurrencyCode]"
+                      length="3"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CurrencyCode]"
+                      name="CurrencyCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Name]"
+                      length="50"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CurrencyCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="CurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CurrencyCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CurrencyCode]"
+                      name="CurrencyCode" />
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\srcCurrency para stgCurency.Paths[Saída de Coluna Derivada]"
+              endId="Package\srcCurrency para stgCurency\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Coluna Derivada"
+              startId="Package\srcCurrency para stgCurency\Coluna Derivada.Outputs[Saída de Coluna Derivada]" />
+            <path
+              refId="Package\srcCurrency para stgCurency.Paths[Saída de Origem OLE DB]"
+              endId="Package\srcCurrency para stgCurency\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+              name="Saída de Origem OLE DB"
+              startId="Package\srcCurrency para stgCurency\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\srcCustomer para stgCustomer"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{60B67377-430F-44CF-8428-933BC55A5026}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="srcCustomer para stgCustomer"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\srcCustomer para stgCustomer\Destino OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Destino OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[erp].[Customer]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CustomerID]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[PersonID]"
+                      cachedDataType="i4"
+                      cachedName="PersonID"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[PersonID]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PersonID]" />
+                    <inputColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[StoreID]"
+                      cachedDataType="i4"
+                      cachedName="StoreID"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[StoreID]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[StoreID]" />
+                    <inputColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[TerritoryID]"
+                      cachedDataType="i4"
+                      cachedName="TerritoryID"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TerritoryID]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]" />
+                    <inputColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[AccountNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="AccountNumber"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[AccountNumber]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[AccountNumber]" />
+                    <inputColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[rowguid]"
+                      cachedDataType="guid"
+                      cachedName="rowguid"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[rowguid]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]" />
+                    <inputColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[PersonID]"
+                      dataType="i4"
+                      name="PersonID" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TerritoryID]"
+                      dataType="i4"
+                      name="TerritoryID" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[AccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="AccountNumber" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[rowguid]"
+                      dataType="guid"
+                      name="rowguid" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcCustomer para stgCustomer\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcCustomer para stgCustomer\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\srcCustomer para stgCustomer\Origem OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[Sales].[Customer]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CustomerID]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PersonID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[PersonID]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PersonID]"
+                      name="PersonID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[StoreID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[StoreID]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[StoreID]"
+                      name="StoreID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                      name="TerritoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[AccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[AccountNumber]"
+                      length="10"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[AccountNumber]"
+                      name="AccountNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                      name="rowguid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[PersonID]"
+                      dataType="i4"
+                      name="PersonID" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[StoreID]"
+                      dataType="i4"
+                      name="StoreID" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                      dataType="i4"
+                      name="TerritoryID" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[AccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="AccountNumber" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                      dataType="guid"
+                      name="rowguid" />
+                    <externalMetadataColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CustomerID]"
+                      dataType="i4"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[PersonID]"
+                      dataType="i4"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[PersonID]"
+                      name="PersonID" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[StoreID]"
+                      dataType="i4"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[StoreID]"
+                      name="StoreID" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                      dataType="i4"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                      name="TerritoryID" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[AccountNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[AccountNumber]"
+                      name="AccountNumber" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                      dataType="guid"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                      name="rowguid" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\srcCustomer para stgCustomer.Paths[Saída de Origem OLE DB]"
+              endId="Package\srcCustomer para stgCustomer\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Origem OLE DB"
+              startId="Package\srcCustomer para stgCustomer\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\srcTerritory para stgTerritory"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{D426A649-8783-45D0-ACD5-33B6C88621DD}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="srcTerritory para stgTerritory"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\srcTerritory para stgTerritory\Destino Staging"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Destino Staging"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[erp].[SalesTerritory]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\srcTerritory para stgTerritory\Destino Staging.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].Columns[TerritoryID]"
+                      cachedDataType="i4"
+                      cachedName="TerritoryID"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].ExternalColumns[TerritoryID]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]" />
+                    <inputColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].ExternalColumns[Name]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].Columns[CountryRegionCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CountryRegionCode"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].ExternalColumns[CountryRegionCode]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CountryRegionCode]" />
+                    <inputColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].Columns[Group]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Group"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].ExternalColumns[Group]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Group]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].ExternalColumns[TerritoryID]"
+                      dataType="i4"
+                      name="TerritoryID" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].ExternalColumns[CountryRegionCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="CountryRegionCode" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB].ExternalColumns[Group]"
+                      dataType="wstr"
+                      length="50"
+                      name="Group" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\srcTerritory para stgTerritory\Destino Staging.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcTerritory para stgTerritory\Destino Staging.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Destino Staging.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcTerritory para stgTerritory\Destino Staging.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\srcTerritory para stgTerritory\Origem OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[Sales].[SalesTerritory]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                      name="TerritoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Name]"
+                      length="50"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CountryRegionCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CountryRegionCode]"
+                      length="3"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CountryRegionCode]"
+                      name="CountryRegionCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Group]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Group]"
+                      length="50"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Group]"
+                      name="Group"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesYTD]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesYTD]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesYTD]"
+                      name="SalesYTD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesLastYear]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesLastYear]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesLastYear]"
+                      name="SalesLastYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CostYTD]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CostYTD]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CostYTD]"
+                      name="CostYTD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CostLastYear]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CostLastYear]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CostLastYear]"
+                      name="CostLastYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                      name="rowguid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                      dataType="i4"
+                      name="TerritoryID" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CountryRegionCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="CountryRegionCode" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Group]"
+                      dataType="wstr"
+                      length="50"
+                      name="Group" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesYTD]"
+                      dataType="cy"
+                      name="SalesYTD" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesLastYear]"
+                      dataType="cy"
+                      name="SalesLastYear" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CostYTD]"
+                      dataType="cy"
+                      name="CostYTD" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CostLastYear]"
+                      dataType="cy"
+                      name="CostLastYear" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                      dataType="guid"
+                      name="rowguid" />
+                    <externalMetadataColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                      dataType="i4"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                      name="TerritoryID" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CountryRegionCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CountryRegionCode]"
+                      name="CountryRegionCode" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Group]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Group]"
+                      name="Group" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesYTD]"
+                      dataType="cy"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesYTD]"
+                      name="SalesYTD" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesLastYear]"
+                      dataType="cy"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesLastYear]"
+                      name="SalesLastYear" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CostYTD]"
+                      dataType="cy"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CostYTD]"
+                      name="CostYTD" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CostLastYear]"
+                      dataType="cy"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CostLastYear]"
+                      name="CostLastYear" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                      dataType="guid"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                      name="rowguid" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\srcTerritory para stgTerritory.Paths[Saída de Origem OLE DB]"
+              endId="Package\srcTerritory para stgTerritory\Destino Staging.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Origem OLE DB"
+              startId="Package\srcTerritory para stgTerritory\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncando dados erpBusiness_Entity"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{59381C3B-5DD7-4553-8384-E95CF6D882BA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncando dados erpBusiness_Entity"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87F9FBC7-4EF6-4DBD-B4DC-46AA970E622B}"
+          SQLTask:SqlStatementSource="truncate table erp.Business_Entity" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncando dados erpCurrency"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{0D45ACEF-3AB4-4A83-BED7-60173912B243}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncando dados erpCurrency"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87F9FBC7-4EF6-4DBD-B4DC-46AA970E622B}"
+          SQLTask:SqlStatementSource="truncate table erp.Currency" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncando dados erpCustomer"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{21AFD9EB-2A5A-410F-B7CB-E021729AA572}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncando dados erpCustomer"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87F9FBC7-4EF6-4DBD-B4DC-46AA970E622B}"
+          SQLTask:SqlStatementSource="truncate table erp.Customer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncando dados erpTerritory"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{D357CD4D-F506-448A-B045-09FF1E4817C4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncando dados erpTerritory"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{87F9FBC7-4EF6-4DBD-B4DC-46AA970E622B}"
+          SQLTask:SqlStatementSource="truncate table erp.SalesTerritory" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{9C08D3D5-7438-42CB-96A9-A7E1DEB321A7}"
+      DTS:From="Package\Truncando dados erpCurrency"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\srcCurrency para stgCurency" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0601F82E-7FBE-4706-85AA-F288978EDF61}"
+      DTS:From="Package\Truncando dados erpTerritory"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 1"
+      DTS:To="Package\srcTerritory para stgTerritory" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1D00970F-94FA-4D37-8598-7E5BE033B25D}"
+      DTS:From="Package\Truncando dados erpBusiness_Entity"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 2"
+      DTS:To="Package\srcBusiness_Entity para stgBusiness_Entity" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{15A6B100-5C75-45A4-90EE-AA8B6EDAEBF6}"
+      DTS:From="Package\Truncando dados erpCustomer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 3"
+      DTS:To="Package\srcCustomer para stgCustomer" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Truncando dados erpCurrency"
+          TopLeft="21.25,22" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\srcCurrency para stgCurency"
+          TopLeft="23.25,100" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="131,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="220,42"
+          Id="Package\Truncando dados erpTerritory"
+          TopLeft="273.25,24" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\srcTerritory para stgTerritory"
+          TopLeft="271.25,99" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 1]"
+          TopLeft="381,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="252,42"
+          Id="Package\Truncando dados erpBusiness_Entity"
+          TopLeft="31.25,186.25" />
+        <NodeLayout
+          Size="281,42"
+          Id="Package\srcBusiness_Entity para stgBusiness_Entity"
+          TopLeft="21.25,272.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 2]"
+          TopLeft="159.5,228.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.25"
+              Start="0,0"
+              End="0,36.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Truncando dados erpCustomer"
+          TopLeft="391.25,178.75" />
+        <NodeLayout
+          Size="224,42"
+          Id="Package\srcCustomer para stgCustomer"
+          TopLeft="385,272.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 3]"
+          TopLeft="500.125,220.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.7500000000001"
+              Start="0,0"
+              End="0,44.2500000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.2500000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\srcCurrency para stgCurency">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\srcCurrency para stgCurency\Origem OLE DB"
+          TopLeft="164,34" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\srcCurrency para stgCurency\Destino OLE DB"
+          TopLeft="223,167" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\srcCurrency para stgCurency\Coluna Derivada"
+          TopLeft="173,101" />
+        <EdgeLayout
+          Id="Package\srcCurrency para stgCurency.Paths[Saída de Origem OLE DB]"
+          TopLeft="240,76">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11,25"
+              Start="0,0"
+              End="11,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.5"
+                    Point2="0,12.5"
+                    Point3="4,12.5" />
+                  <mssgle:LineSegment
+                    End="7,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7,12.5"
+                    Point2="11,12.5"
+                    Point3="11,16.5" />
+                  <mssgle:LineSegment
+                    End="11,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\srcCurrency para stgCurency.Paths[Saída de Coluna Derivada]"
+          TopLeft="251,143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.5,24"
+              Start="0,0"
+              End="48.5,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8"
+                    Point2="0,12"
+                    Point3="4,12" />
+                  <mssgle:LineSegment
+                    End="44.5,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="44.5,12"
+                    Point2="48.5,12"
+                    Point3="48.5,16" />
+                  <mssgle:LineSegment
+                    End="48.5,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\srcCurrency para stgCurency\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\srcCurrency para stgCurency\Destino OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\srcTerritory para stgTerritory">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\srcTerritory para stgTerritory\Origem OLE DB"
+          TopLeft="115,23" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\srcTerritory para stgTerritory\Destino Staging"
+          TopLeft="118,99" />
+        <EdgeLayout
+          Id="Package\srcTerritory para stgTerritory.Paths[Saída de Origem OLE DB]"
+          TopLeft="192.75,65">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\srcTerritory para stgTerritory\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\srcTerritory para stgTerritory\Destino Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\srcBusiness_Entity para stgBusiness_Entity">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\srcBusiness_Entity para stgBusiness_Entity\Coluna Derivada"
+          TopLeft="48,122" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB"
+          TopLeft="46,231" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB"
+          TopLeft="54,22" />
+        <EdgeLayout
+          Id="Package\srcBusiness_Entity para stgBusiness_Entity.Paths[Saída de Origem OLE DB]"
+          TopLeft="128,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\srcBusiness_Entity para stgBusiness_Entity.Paths[Saída de Coluna Derivada]"
+          TopLeft="124.25,164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67"
+              Start="0,0"
+              End="0,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\srcBusiness_Entity para stgBusiness_Entity\Destino OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\srcBusiness_Entity para stgBusiness_Entity\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\srcCustomer para stgCustomer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\srcCustomer para stgCustomer\Origem OLE DB"
+          TopLeft="125,68" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\srcCustomer para stgCustomer\Destino OLE DB"
+          TopLeft="117,146" />
+        <EdgeLayout
+          Id="Package\srcCustomer para stgCustomer.Paths[Saída de Origem OLE DB]"
+          TopLeft="197.25,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\srcCustomer para stgCustomer\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\srcCustomer para stgCustomer\Destino OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
