@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="ERP_Carregamento"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{DE5FA19C-6DF9-4816-94BF-280DAD10D5DC}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{5E410077-AC7E-48BC-9247-8A7950B72AD0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -3762,25 +3762,25 @@
         <NodeLayout
           Size="221,42"
           Id="Package\Truncando dados erpCurrency"
-          TopLeft="21.25,22" />
+          TopLeft="5.5,5.5" />
         <NodeLayout
           Size="214,42"
           Id="Package\srcCurrency para stgCurency"
-          TopLeft="23.25,100" />
+          TopLeft="9,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição]"
-          TopLeft="131,64">
+          TopLeft="116,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,28.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3792,25 +3792,25 @@
         <NodeLayout
           Size="220,42"
           Id="Package\Truncando dados erpTerritory"
-          TopLeft="273.25,24" />
+          TopLeft="287,5.5" />
         <NodeLayout
           Size="215,42"
           Id="Package\srcTerritory para stgTerritory"
-          TopLeft="271.25,99" />
+          TopLeft="289.5,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 1]"
-          TopLeft="381,66">
+          TopLeft="397,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,33"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,25.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3822,25 +3822,25 @@
         <NodeLayout
           Size="252,42"
           Id="Package\Truncando dados erpBusiness_Entity"
-          TopLeft="1022.10714285714,263.964285714286" />
+          TopLeft="580,5.49999999999989" />
         <NodeLayout
           Size="281,42"
           Id="Package\srcBusiness_Entity para stgBusiness_Entity"
-          TopLeft="1001.25,379.357142857143" />
+          TopLeft="565.5,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 2]"
-          TopLeft="1144.92857142857,305.964285714286">
+          TopLeft="706,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,73.3928571428571"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,65.8928571428571">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,65.8928571428571" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3852,25 +3852,25 @@
         <NodeLayout
           Size="224,42"
           Id="Package\Truncando dados erpCustomer"
-          TopLeft="517.5,20" />
+          TopLeft="907,5.49999999999989" />
         <NodeLayout
           Size="224,42"
           Id="Package\srcCustomer para stgCustomer"
-          TopLeft="512.5,98.7500000000001" />
+          TopLeft="907,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 3]"
-          TopLeft="627,62">
+          TopLeft="1019,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36.7500000000001"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,29.2500000000001">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.2500000000001" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3882,25 +3882,25 @@
         <NodeLayout
           Size="211,42"
           Id="Package\Truncando dados erpPerson"
-          TopLeft="953.75,92.6785714285714" />
+          TopLeft="1191.5,5.49999999999989" />
         <NodeLayout
           Size="198,42"
           Id="Package\srcPerson para stgPerson"
-          TopLeft="958.071428571428,173.464285714286" />
+          TopLeft="1198,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 4]"
-          TopLeft="1058.16071428571,134.678571428571">
+          TopLeft="1297,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38.7857142857143"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,31.2857142857143">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.2857142857143" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3912,25 +3912,25 @@
         <NodeLayout
           Size="248,42"
           Id="Package\Truncando dados erpPersonAddress"
-          TopLeft="1200.85714285714,96.9642857142857" />
+          TopLeft="1469,5.49999999999977" />
         <NodeLayout
           Size="272,42"
           Id="Package\srcPersonAddress para stgPersonAddress"
-          TopLeft="1186.28571428571,190.678571428571" />
+          TopLeft="1457,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 5]"
-          TopLeft="1323.57142857143,138.964285714286">
+          TopLeft="1593,47.4999999999998">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,51.7142857142857"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,44.2142857142857">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.2142857142857" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3942,37 +3942,25 @@
         <NodeLayout
           Size="204,42"
           Id="Package\Truncando dados erpStore"
-          TopLeft="179.428571428571,158.857142857143" />
+          TopLeft="1780,5.49999999999977" />
         <NodeLayout
           Size="184,42"
           Id="Package\srcStore para stgStore"
-          TopLeft="206.571428571429,251.968253968254" />
+          TopLeft="1790,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 9]"
-          TopLeft="281.428571428571,200.857142857143">
+          TopLeft="1882,47.4999999999998">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="17.1428571428572,51.1111111111111"
+              EndConnector="0,60"
               Start="0,0"
-              End="17.1428571428572,43.6111111111111">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.5555555555556" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.5555555555556"
-                    Point2="0,25.5555555555556"
-                    Point3="4,25.5555555555556" />
-                  <mssgle:LineSegment
-                    End="13.1428571428572,25.5555555555556" />
-                  <mssgle:CubicBezierSegment
-                    Point1="13.1428571428572,25.5555555555556"
-                    Point2="17.1428571428572,25.5555555555556"
-                    Point3="17.1428571428572,29.5555555555556" />
-                  <mssgle:LineSegment
-                    End="17.1428571428572,43.6111111111111" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
