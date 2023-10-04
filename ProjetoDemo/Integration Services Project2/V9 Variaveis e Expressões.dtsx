@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{2C40146B-E5D7-4971-B9FF-559A9DB91A29}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{58BA73A2-206D-4640-9E66-8601849492B4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -133,46 +133,35 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:PackageParameters>
-    <DTS:PackageParameter
-      DTS:CreationName=""
-      DTS:DataType="3"
-      DTS:DTSID="{803CF471-9BA0-41A8-BE53-F9D4782D7397}"
-      DTS:ObjectName="data_parcial">
-      <DTS:Property
-        DTS:DataType="3"
-        DTS:Name="ParameterValue">25</DTS:Property>
-    </DTS:PackageParameter>
-    <DTS:PackageParameter
-      DTS:CreationName=""
-      DTS:DataType="3"
-      DTS:DTSID="{9FE0DD39-5DD6-4E54-97C2-D00CAB5DA9F7}"
-      DTS:ObjectName="src_cnt">
-      <DTS:Property
-        DTS:DataType="3"
-        DTS:Name="ParameterValue">0</DTS:Property>
-    </DTS:PackageParameter>
-  </DTS:PackageParameters>
   <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4C324F4B-8EDA-4B55-85D8-23E5A78F8FAE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="contador_linhas">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{E09D9491-88EF-474C-9302-9D4E57562509}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
-      DTS:ObjectName="Variável">
+      DTS:ObjectName="data_parcial">
       <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
+        DTS:DataType="3">25</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Tarefa Executar SQL"
+      DTS:refId="Package\Deleta dados anteriores"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Tarefa Executar SQL"
       DTS:DTSID="{BCEA0C44-EB74-45CB-91D6-5CC764D1B759}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Tarefa Executar SQL"
+      DTS:ObjectName="Deleta dados anteriores"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -183,821 +172,13 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Tarefa Executar SQL 1"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Tarefa Executar SQL"
-      DTS:DTSID="{89956782-71DB-4B69-8464-8ACDF0B38BB8}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Tarefa Executar SQL 1"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{837CC94F-74FF-47D8-B188-AB3BF360E23D}"
-          SQLTask:SqlStatementSource="SELECT COUNT(1) cnt FROM [dbo].[dados_sistema]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Tarefa Fluxo de Dados"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Tarefa Fluxo de Dados"
-      DTS:DTSID="{9B507E11-55BF-4068-8367-39E917E57ED0}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Tarefa Fluxo de Dados"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1">
-          <components>
-            <component
-              refId="Package\Tarefa Fluxo de Dados\Conversão de Dados"
-              componentClassID="Microsoft.DataConvert"
-              contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
-              description="Conversão de Dados"
-              name="Conversão de Dados"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
-                  name="Entrada de Conversão de Dados">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[nome]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="nome"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[sobrenome]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="sobrenome"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[localidade]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="localidade"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[genero]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="genero"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[email]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="email"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[email]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[universidade_estudo]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="universidade_estudo"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[universidade_estudo]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[modelo_carro]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="modelo_carro"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[modelo_carro]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[id]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="id"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados]"
-                  exclusionGroup="1"
-                  name="Saída de Conversão de Dados"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of nome]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of nome]"
-                      name="Copy of nome"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
-                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of sobrenome]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of sobrenome]"
-                      name="Copy of sobrenome"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
-                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of localidade]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of localidade]"
-                      name="Copy of localidade"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
-                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of genero]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of genero]"
-                      name="Copy of genero"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
-                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of email]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of email]"
-                      name="Copy of email"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
-                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[email]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of universidade_estudo]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of universidade_estudo]"
-                      name="Copy of universidade_estudo"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
-                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[universidade_estudo]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of modelo_carro]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of modelo_carro]"
-                      name="Copy of modelo_carro"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
-                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[modelo_carro]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of id]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of id]"
-                      name="Copy of id"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
-                          name="SourceInputColumnLineageID">#{Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Saída de Erro de Conversão de Dados"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Tarefa Fluxo de Dados\Destino OLE DB"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
-              description="Destino OLE DB"
-              name="Destino OLE DB"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
-                  name="OpenRowset">[dbo].[dados_sistema]</property>
-                <property
-                  dataType="System.String"
-                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="O comando SQL a ser executado."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica o modo usado para acessar o banco de dados."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SMTN010.StoreDemo]"
-                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.StoreDemo]"
-                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
-                  errorOrTruncationOperation="Inserir"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="Entrada de Destino OLE DB">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of id]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Copy of id"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of id]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of nome]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Copy of nome"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of nome]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of sobrenome]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Copy of sobrenome"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of sobrenome]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of localidade]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Copy of localidade"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of localidade]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of genero]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Copy of genero"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of genero]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of email]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Copy of email"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of email]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of universidade_estudo]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Copy of universidade_estudo"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of universidade_estudo]" />
-                    <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of modelo_carro]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Copy of modelo_carro"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of modelo_carro]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
-                      dataType="i4"
-                      name="ID" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
-                      dataType="wstr"
-                      length="70"
-                      name="NOME" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
-                      dataType="wstr"
-                      length="70"
-                      name="SOBRENOME" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
-                      dataType="wstr"
-                      length="70"
-                      name="LOCALIDADE" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
-                      dataType="wstr"
-                      length="70"
-                      name="GENERO" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
-                      dataType="wstr"
-                      length="70"
-                      name="EMAIL" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
-                      dataType="wstr"
-                      length="70"
-                      name="UNIVERSIDADE" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
-                      dataType="wstr"
-                      length="70"
-                      name="MODELO_CARRO" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Saída de Erro de Destino OLE DB"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples"
-              componentClassID="Microsoft.FlatFileSource"
-              contactInfo="Origem de Arquivo Simples;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
-              description="Origem de Arquivo Simples"
-              localeId="1046"
-              name="Origem de Arquivo Simples"
-              usesDispositions="true"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Especifica se colunas de comprimento zero são tratadas como nulas."
-                  name="RetainNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Especifica o nome de uma coluna de saída que contém o nome do arquivo. Se nenhum nome for especificado, nenhuma coluna de saída contendo o nome de arquivo será gerada."
-                  name="FileNameColumnName"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Connections[FlatFileConnection]"
-                  connectionManagerID="Package.ConnectionManagers[dados_sistema]"
-                  connectionManagerRefId="Package.ConnectionManagers[dados_sistema]"
-                  name="FlatFileConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples]"
-                  name="Saída de Origem de Arquivo Simples">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[id]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]"
-                      name="id"
-                      truncationRowDisposition="IgnoreFailure">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[nome]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]"
-                      name="nome"
-                      truncationRowDisposition="IgnoreFailure">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[sobrenome]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]"
-                      name="sobrenome"
-                      truncationRowDisposition="IgnoreFailure">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[localidade]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]"
-                      name="localidade"
-                      truncationRowDisposition="IgnoreFailure">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[genero]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]"
-                      name="genero"
-                      truncationRowDisposition="IgnoreFailure">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[email]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[email]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[email]"
-                      name="email"
-                      truncationRowDisposition="IgnoreFailure">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[universidade_estudo]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[universidade_estudo]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[universidade_estudo]"
-                      name="universidade_estudo"
-                      truncationRowDisposition="IgnoreFailure">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[modelo_carro]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversão"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[modelo_carro]"
-                      length="50"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[modelo_carro]"
-                      name="modelo_carro"
-                      truncationRowDisposition="IgnoreFailure">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indica se os dados estão em formato binário."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[id]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="id" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[nome]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="nome" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[sobrenome]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="sobrenome" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[localidade]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="localidade" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[genero]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="genero" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[email]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="email" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[universidade_estudo]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="universidade_estudo" />
-                    <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[modelo_carro]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="modelo_carro" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples]"
-                  isErrorOut="true"
-                  name="Saída de Erro de Origem de Arquivo Simples">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
-                      codePage="1252"
-                      dataType="text"
-                      description="Coluna de Saída de Erro de Origem de Arquivo Simples"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
-                      name="Coluna de Saída de Erro de Origem de Arquivo Simples" />
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Conversão de Dados]"
-              endId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
-              name="Saída de Conversão de Dados"
-              startId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Outputs[Saída de Conversão de Dados]" />
-            <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem de Arquivo Simples]"
-              endId="Package\Tarefa Fluxo de Dados\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
-              name="Saída de Origem de Arquivo Simples"
-              startId="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples]" />
-          </paths>
-        </pipeline>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Tarefa Fluxo de Dados 1"
+      DTS:refId="Package\Fluxo de SSISDemo para StoreDemo"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Tarefa Fluxo de Dados"
       DTS:DTSID="{64DD0F84-B438-49F9-AA97-A9EA60189205}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Tarefa Fluxo de Dados 1"
+      DTS:ObjectName="Fluxo de SSISDemo para StoreDemo"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -1005,7 +186,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB"
+              refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
               description="Destino OLE DB"
@@ -1062,7 +243,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Connections[OleDbConnection]"
+                  refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.SSISDemo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.SSISDemo]"
                   description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
@@ -1070,106 +251,106 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
                   errorOrTruncationOperation="Inserir"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Entrada de Destino OLE DB">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ID]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ID]"
                       cachedDataType="i4"
                       cachedName="ID"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ID]" />
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ID]" />
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[NOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[NOME]"
                       cachedDataType="wstr"
                       cachedLength="140"
                       cachedName="NOME"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOME]" />
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOME]" />
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SOBRENOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SOBRENOME]"
                       cachedDataType="wstr"
                       cachedLength="140"
                       cachedName="SOBRENOME"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SOBRENOME]" />
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SOBRENOME]" />
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[LOCALIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[LOCALIDADE]"
                       cachedDataType="wstr"
                       cachedLength="140"
                       cachedName="LOCALIDADE"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LOCALIDADE]" />
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LOCALIDADE]" />
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[GENERO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[GENERO]"
                       cachedDataType="wstr"
                       cachedLength="140"
                       cachedName="GENERO"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[GENERO]" />
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[GENERO]" />
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[EMAIL]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[EMAIL]"
                       cachedDataType="wstr"
                       cachedLength="140"
                       cachedName="EMAIL"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]" />
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]" />
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[UNIVERSIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[UNIVERSIDADE]"
                       cachedDataType="wstr"
                       cachedLength="140"
                       cachedName="UNIVERSIDADE"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UNIVERSIDADE]" />
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UNIVERSIDADE]" />
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[MODELO_CARRO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[MODELO_CARRO]"
                       cachedDataType="wstr"
                       cachedLength="140"
                       cachedName="MODELO_CARRO"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[MODELO_CARRO]" />
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[MODELO_CARRO]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
                       dataType="i4"
                       name="ID" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
                       dataType="wstr"
                       length="140"
                       name="NOME" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
                       dataType="wstr"
                       length="140"
                       name="SOBRENOME" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
                       dataType="wstr"
                       length="140"
                       name="LOCALIDADE" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
                       dataType="wstr"
                       length="140"
                       name="GENERO" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
                       dataType="wstr"
                       length="140"
                       name="EMAIL" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
                       dataType="wstr"
                       length="140"
                       name="UNIVERSIDADE" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
                       dataType="wstr"
                       length="140"
                       name="MODELO_CARRO" />
@@ -1178,22 +359,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                  refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Destino OLE DB"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                  synchronousInputId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1202,7 +383,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB"
+              refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
               description="Origem OLE DB"
@@ -1251,7 +432,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Connections[OleDbConnection]"
+                  refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.StoreDemo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.StoreDemo]"
                   description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
@@ -1259,194 +440,194 @@
               </connections>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
                   name="Saída de Origem OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ID]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ID]"
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ID]"
                       name="ID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOME]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOME]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOME]"
                       name="NOME"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SOBRENOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SOBRENOME]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SOBRENOME]"
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SOBRENOME]"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SOBRENOME]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SOBRENOME]"
                       name="SOBRENOME"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LOCALIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LOCALIDADE]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LOCALIDADE]"
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LOCALIDADE]"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LOCALIDADE]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LOCALIDADE]"
                       name="LOCALIDADE"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[GENERO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[GENERO]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[GENERO]"
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[GENERO]"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[GENERO]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[GENERO]"
                       name="GENERO"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[EMAIL]"
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[EMAIL]"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]"
                       name="EMAIL"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UNIVERSIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UNIVERSIDADE]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UNIVERSIDADE]"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UNIVERSIDADE]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UNIVERSIDADE]"
                       name="UNIVERSIDADE"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[MODELO_CARRO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[MODELO_CARRO]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[MODELO_CARRO]"
+                      externalMetadataColumnId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[MODELO_CARRO]"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[MODELO_CARRO]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[MODELO_CARRO]"
                       name="MODELO_CARRO"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ID]"
                       dataType="i4"
                       name="ID" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME]"
                       dataType="wstr"
                       length="140"
                       name="NOME" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SOBRENOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SOBRENOME]"
                       dataType="wstr"
                       length="140"
                       name="SOBRENOME" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LOCALIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LOCALIDADE]"
                       dataType="wstr"
                       length="140"
                       name="LOCALIDADE" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[GENERO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[GENERO]"
                       dataType="wstr"
                       length="140"
                       name="GENERO" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[EMAIL]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[EMAIL]"
                       dataType="wstr"
                       length="140"
                       name="EMAIL" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UNIVERSIDADE]"
                       dataType="wstr"
                       length="140"
                       name="UNIVERSIDADE" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[MODELO_CARRO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[MODELO_CARRO]"
                       dataType="wstr"
                       length="140"
                       name="MODELO_CARRO" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
                   isErrorOut="true"
                   name="Saída de Erro de Origem OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ID]"
                       name="ID" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
                       dataType="wstr"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME]"
                       name="NOME" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SOBRENOME]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SOBRENOME]"
                       dataType="wstr"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SOBRENOME]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SOBRENOME]"
                       name="SOBRENOME" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LOCALIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LOCALIDADE]"
                       dataType="wstr"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LOCALIDADE]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LOCALIDADE]"
                       name="LOCALIDADE" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[GENERO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[GENERO]"
                       dataType="wstr"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[GENERO]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[GENERO]"
                       name="GENERO" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[EMAIL]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[EMAIL]"
                       dataType="wstr"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[EMAIL]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[EMAIL]"
                       name="EMAIL" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UNIVERSIDADE]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UNIVERSIDADE]"
                       dataType="wstr"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UNIVERSIDADE]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UNIVERSIDADE]"
                       name="UNIVERSIDADE" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[MODELO_CARRO]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[MODELO_CARRO]"
                       dataType="wstr"
                       length="140"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[MODELO_CARRO]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[MODELO_CARRO]"
                       name="MODELO_CARRO" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      refId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      lineageId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1457,10 +638,823 @@
           </components>
           <paths>
             <path
-              refId="Package\Tarefa Fluxo de Dados 1.Paths[Saída de Origem OLE DB]"
-              endId="Package\Tarefa Fluxo de Dados 1\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+              refId="Package\Fluxo de SSISDemo para StoreDemo.Paths[Saída de Origem OLE DB]"
+              endId="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
               name="Saída de Origem OLE DB"
-              startId="Package\Tarefa Fluxo de Dados 1\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              startId="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Realiza contagem de linhas e verifica se linhas maior que 100 segue a execução"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{89956782-71DB-4B69-8464-8ACDF0B38BB8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Realiza contagem de linhas e verifica se linhas maior que 100 segue a execução"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{837CC94F-74FF-47D8-B188-AB3BF360E23D}"
+          SQLTask:SqlStatementSource="SELECT COUNT(1) cnt FROM [dbo].[dados_sistema]"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="cnt"
+            SQLTask:DtsVariableName="User::contador_linhas" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transfere dados do csv para SSISDemo"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{9B507E11-55BF-4068-8367-39E917E57ED0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transfere dados do csv para SSISDemo"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversão de Dados"
+              name="Conversão de Dados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                  name="Entrada de Conversão de Dados">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[nome]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="nome"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[sobrenome]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="sobrenome"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[localidade]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="localidade"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[genero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="genero"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="email"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[email]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[universidade_estudo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="universidade_estudo"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[universidade_estudo]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[modelo_carro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="modelo_carro"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[modelo_carro]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="id"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados]"
+                  exclusionGroup="1"
+                  name="Saída de Conversão de Dados"
+                  synchronousInputId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of nome]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of nome]"
+                      name="Copy of nome"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of sobrenome]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of sobrenome]"
+                      name="Copy of sobrenome"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of localidade]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of localidade]"
+                      name="Copy of localidade"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of genero]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of genero]"
+                      name="Copy of genero"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of email]"
+                      name="Copy of email"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[email]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of universidade_estudo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of universidade_estudo]"
+                      name="Copy of universidade_estudo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[universidade_estudo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of modelo_carro]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of modelo_carro]"
+                      name="Copy of modelo_carro"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[modelo_carro]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of id]"
+                      name="Copy of id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Conversão de Dados"
+                  synchronousInputId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Destino OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[dados_sistema]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.StoreDemo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.StoreDemo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of id]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of id"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of id]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of nome]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of nome"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of nome]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of sobrenome]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of sobrenome"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of sobrenome]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of localidade]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of localidade"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of localidade]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of genero]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of genero"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of genero]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of email]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of email"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of email]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of universidade_estudo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of universidade_estudo"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of universidade_estudo]" />
+                    <inputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Copy of modelo_carro]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of modelo_carro"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Copy of modelo_carro]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME]"
+                      dataType="wstr"
+                      length="140"
+                      name="NOME" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SOBRENOME]"
+                      dataType="wstr"
+                      length="140"
+                      name="SOBRENOME" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LOCALIDADE]"
+                      dataType="wstr"
+                      length="140"
+                      name="LOCALIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[GENERO]"
+                      dataType="wstr"
+                      length="140"
+                      name="GENERO" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
+                      dataType="wstr"
+                      length="140"
+                      name="EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UNIVERSIDADE]"
+                      dataType="wstr"
+                      length="140"
+                      name="UNIVERSIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[MODELO_CARRO]"
+                      dataType="wstr"
+                      length="140"
+                      name="MODELO_CARRO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Origem de Arquivo Simples;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+              description="Origem de Arquivo Simples"
+              localeId="1046"
+              name="Origem de Arquivo Simples"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica se colunas de comprimento zero são tratadas como nulas."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome de uma coluna de saída que contém o nome do arquivo. Se nenhum nome for especificado, nenhuma coluna de saída contendo o nome de arquivo será gerada."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[dados_sistema]"
+                  connectionManagerRefId="Package.ConnectionManagers[dados_sistema]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples]"
+                  name="Saída de Origem de Arquivo Simples">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[id]"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[nome]"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[nome]"
+                      name="nome"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[sobrenome]"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[sobrenome]"
+                      name="sobrenome"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[localidade]"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[localidade]"
+                      name="localidade"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[genero]"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[genero]"
+                      name="genero"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[email]"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[universidade_estudo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[universidade_estudo]"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[universidade_estudo]"
+                      name="universidade_estudo"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[modelo_carro]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[modelo_carro]"
+                      length="50"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].Columns[modelo_carro]"
+                      name="modelo_carro"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se os dados estão em formato binário."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[nome]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nome" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[sobrenome]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="sobrenome" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[localidade]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="localidade" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[genero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="genero" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[universidade_estudo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="universidade_estudo" />
+                    <externalMetadataColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples].ExternalColumns[modelo_carro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="modelo_carro" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem de Arquivo Simples">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Coluna de Saída de Erro de Origem de Arquivo Simples"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[Coluna de Saída de Erro de Origem de Arquivo Simples]"
+                      name="Coluna de Saída de Erro de Origem de Arquivo Simples" />
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Erro de Origem de Arquivo Simples].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Transfere dados do csv para SSISDemo.Paths[Saída de Conversão de Dados]"
+              endId="Package\Transfere dados do csv para SSISDemo\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Conversão de Dados"
+              startId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Outputs[Saída de Conversão de Dados]" />
+            <path
+              refId="Package\Transfere dados do csv para SSISDemo.Paths[Saída de Origem de Arquivo Simples]"
+              endId="Package\Transfere dados do csv para SSISDemo\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+              name="Saída de Origem de Arquivo Simples"
+              startId="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples.Outputs[Saída de Origem de Arquivo Simples]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1472,19 +1466,29 @@
       DTS:CreationName=""
       DTS:DTSID="{6278E869-2D70-45D6-8B5E-44DFF1AFC41F}"
       DTS:EvalOp="1"
-      DTS:Expression="DATEPART( &quot;DD&quot;, GETDATE()) &lt;  @[$Package::data_parcial]"
-      DTS:From="Package\Tarefa Executar SQL"
+      DTS:Expression="DATEPART( &quot;DD&quot;, GETDATE()) &lt;  @[User::data_parcial]"
+      DTS:From="Package\Deleta dados anteriores"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restrição"
-      DTS:To="Package\Tarefa Fluxo de Dados" />
+      DTS:To="Package\Transfere dados do csv para SSISDemo" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
       DTS:CreationName=""
       DTS:DTSID="{4EE3649A-5E4F-40C9-B63F-1350227D26B3}"
-      DTS:From="Package\Tarefa Fluxo de Dados"
+      DTS:From="Package\Transfere dados do csv para SSISDemo"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restrição 1"
-      DTS:To="Package\Tarefa Executar SQL 1" />
+      DTS:To="Package\Realiza contagem de linhas e verifica se linhas maior que 100 segue a execução" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{78E5D96A-C140-4C3C-9EDB-C57D2F3A17AD}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::contador_linhas] &gt; 100"
+      DTS:From="Package\Realiza contagem de linhas e verifica se linhas maior que 100 segue a execução"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 2"
+      DTS:To="Package\Fluxo de SSISDemo para StoreDemo" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
@@ -1499,71 +1503,83 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="176,42"
-          Id="Package\Tarefa Executar SQL"
-          TopLeft="50,55" />
+          Size="191,42"
+          Id="Package\Deleta dados anteriores"
+          TopLeft="43,23" />
         <NodeLayout
-          Size="185,42"
-          Id="Package\Tarefa Fluxo de Dados"
-          TopLeft="42,150" />
+          Size="456,42"
+          Id="Package\Realiza contagem de linhas e verifica se linhas maior que 100 segue a execução"
+          TopLeft="21,203" />
+        <NodeLayout
+          Size="265,42"
+          Id="Package\Transfere dados do csv para SSISDemo"
+          TopLeft="174,102" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\Fluxo de SSISDemo para StoreDemo"
+          TopLeft="173,304" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição]"
-          TopLeft="136.25,97">
+          TopLeft="138.5,65">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,53"
+              EndConnector="168,37"
               Start="0,0"
-              End="0,45.5">
+              End="168,29.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,45.5" />
+                    End="0,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.5"
+                    Point2="0,18.5"
+                    Point3="4,18.5" />
+                  <mssgle:LineSegment
+                    End="164,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="164,18.5"
+                    Point2="168,18.5"
+                    Point3="168,22.5" />
+                  <mssgle:LineSegment
+                    End="168,29.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,14.75,16,16"
+              BoundingBox="76,23.5,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="185,42"
-          Id="Package\Tarefa Executar SQL 1"
-          TopLeft="137,242" />
-        <NodeLayout
-          Size="194,42"
-          Id="Package\Tarefa Fluxo de Dados 1"
-          TopLeft="196,326" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restrição 1]"
-          TopLeft="134.5,192">
+          TopLeft="306.5,144">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="95,50"
+              EndConnector="-57.5,59"
               Start="0,0"
-              End="95,42.5">
+              End="-57.5,51.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21" />
+                    End="0,25.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21"
-                    Point2="0,25"
-                    Point3="4,25" />
+                    Point1="0,25.5"
+                    Point2="0,29.5"
+                    Point3="-4,29.5" />
                   <mssgle:LineSegment
-                    End="91,25" />
+                    End="-53.5,29.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="91,25"
-                    Point2="95,25"
-                    Point3="95,29" />
+                    Point1="-53.5,29.5"
+                    Point2="-57.5,29.5"
+                    Point3="-57.5,33.5" />
                   <mssgle:LineSegment
-                    End="95,42.5" />
+                    End="-57.5,51.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1572,28 +1588,64 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 2]"
+          TopLeft="249,245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50,59"
+              Start="0,0"
+              End="50,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5"
+                    Point2="0,29.5"
+                    Point3="4,29.5" />
+                  <mssgle:LineSegment
+                    End="46,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46,29.5"
+                    Point2="50,29.5"
+                    Point3="50,33.5" />
+                  <mssgle:LineSegment
+                    End="50,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="17,34.5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Tarefa Fluxo de Dados">
+    design-time-name="Package\Transfere dados do csv para SSISDemo">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
-          Id="Package\Tarefa Fluxo de Dados\Destino OLE DB"
+          Id="Package\Transfere dados do csv para SSISDemo\Destino OLE DB"
           TopLeft="89,174" />
         <NodeLayout
           Size="206,42"
-          Id="Package\Tarefa Fluxo de Dados\Origem de Arquivo Simples"
+          Id="Package\Transfere dados do csv para SSISDemo\Origem de Arquivo Simples"
           TopLeft="62,15" />
         <NodeLayout
           Size="176,42"
-          Id="Package\Tarefa Fluxo de Dados\Conversão de Dados"
+          Id="Package\Transfere dados do csv para SSISDemo\Conversão de Dados"
           TopLeft="82,93" />
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem de Arquivo Simples]"
+          Id="Package\Transfere dados do csv para SSISDemo.Paths[Saída de Origem de Arquivo Simples]"
           TopLeft="167.5,57">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1615,7 +1667,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Conversão de Dados]"
+          Id="Package\Transfere dados do csv para SSISDemo.Paths[Saída de Conversão de Dados]"
           TopLeft="167.75,135">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1640,7 +1692,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Destino OLE DB">
+    design-time-name="Package\Transfere dados do csv para SSISDemo\Destino OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1653,20 +1705,20 @@
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\Tarefa Fluxo de Dados 1">
+    design-time-name="Package\Fluxo de SSISDemo para StoreDemo">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
-          Id="Package\Tarefa Fluxo de Dados 1\Destino OLE DB"
+          Id="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB"
           TopLeft="190,157" />
         <NodeLayout
           Size="152,42"
-          Id="Package\Tarefa Fluxo de Dados 1\Origem OLE DB"
+          Id="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB"
           TopLeft="199,41" />
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados 1.Paths[Saída de Origem OLE DB]"
+          Id="Package\Fluxo de SSISDemo para StoreDemo.Paths[Saída de Origem OLE DB]"
           TopLeft="275,83">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -1703,7 +1755,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados 1\Destino OLE DB">
+    design-time-name="Package\Fluxo de SSISDemo para StoreDemo\Destino OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1716,7 +1768,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados 1\Origem OLE DB">
+    design-time-name="Package\Fluxo de SSISDemo para StoreDemo\Origem OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
