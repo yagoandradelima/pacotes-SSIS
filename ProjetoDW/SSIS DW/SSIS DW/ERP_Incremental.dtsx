@@ -1,0 +1,2176 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2023 4:27:32 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SMTN010"
+  DTS:CreatorName="SACAVALCANTE\yandrade"
+  DTS:DTSID="{A41E3E0B-30FC-406B-95DE-040FA6DA8FC1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5314.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{E1D65FD7-FED0-496E-9EFB-7AFB8B1C92BE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8A5DC267-49B8-4D72-97B9-4D6B0246F762}"
+      DTS:ObjectName="SMTN010.AdventureWorks2022">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=AdventureWorks2022;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{8A5DC267-49B8-4D72-97B9-4D6B0246F762}SMTN010.AdventureWorks2022;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D4EAD5C5-1919-4975-9F31-33E70A6EF65C}"
+      DTS:ObjectName="SMTN010.AWN_STG_Demo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=AWN_STG_Demo;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{D4EAD5C5-1919-4975-9F31-33E70A6EF65C}SMTN010.AWN_STG_Demo;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{D80A8720-A6EA-4621-8745-16582A65298F}"
+      DTS:ObjectName="is_fisrt_time">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">1</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carregamento completo ou Primeiro Carregamento"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{E886EFFD-B9C6-44FB-A523-50DC579BD1FE}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carregamento completo ou Primeiro Carregamento">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{7039217C-E959-48FF-A6EE-6008315BA0EC}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SalesDetail Carregamento Full"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+                  description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+                  name="Coluna Derivada"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+                      description="Entrada para a Transformação Coluna Derivada"
+                      name="Entrada de Coluna Derivada">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Coluna Derivada]"
+                      description="Saída Padrão da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      name="Saída de Coluna Derivada"
+                      synchronousInputId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[SSISTrackID]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[SSISTrackID]"
+                          name="SSISTrackID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              name="Expression">@[System::ServerExecutionID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[System::ServerExecutionID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Created_Dt]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Created_Dt]"
+                          name="Created_Dt"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              name="Expression">[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada]"
+                      description="Saída de Erro da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Coluna Derivada"
+                      synchronousInputId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Inputs[Entrada de Coluna Derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="Destino OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[erp].[SalesOrderDetail]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                      connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SalesOrderID]"
+                          cachedDataType="i4"
+                          cachedName="SalesOrderID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SalesOrderDetailID]"
+                          cachedDataType="i4"
+                          cachedName="SalesOrderDetailID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderDetailID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderDetailID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[CarrierTrackingNumber]"
+                          cachedDataType="wstr"
+                          cachedLength="25"
+                          cachedName="CarrierTrackingNumber"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CarrierTrackingNumber]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CarrierTrackingNumber]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[OrderQty]"
+                          cachedDataType="i2"
+                          cachedName="OrderQty"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderQty]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ProductID]"
+                          cachedDataType="i4"
+                          cachedName="ProductID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ProductID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SpecialOfferID]"
+                          cachedDataType="i4"
+                          cachedName="SpecialOfferID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SpecialOfferID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SpecialOfferID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[UnitPrice]"
+                          cachedDataType="cy"
+                          cachedName="UnitPrice"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UnitPrice]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[UnitPriceDiscount]"
+                          cachedDataType="cy"
+                          cachedName="UnitPriceDiscount"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UnitPriceDiscount]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[LineTotal]"
+                          cachedDataType="numeric"
+                          cachedName="LineTotal"
+                          cachedPrecision="38"
+                          cachedScale="6"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LineTotal]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[rowguid]"
+                          cachedDataType="guid"
+                          cachedName="rowguid"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[rowguid]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ModifiedDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ModifiedDate"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SSISTrackID]"
+                          cachedDataType="i8"
+                          cachedName="SSISTrackID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SSISTrackId]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[SSISTrackID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Created_Dt]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Created_Dt"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Created_Dt]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Coluna Derivada].Columns[Created_Dt]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderID]"
+                          dataType="i4"
+                          name="SalesOrderID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderDetailID]"
+                          dataType="i4"
+                          name="SalesOrderDetailID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CarrierTrackingNumber]"
+                          dataType="wstr"
+                          length="25"
+                          name="CarrierTrackingNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderQty]"
+                          dataType="i2"
+                          name="OrderQty" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ProductID]"
+                          dataType="i4"
+                          name="ProductID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SpecialOfferID]"
+                          dataType="i4"
+                          name="SpecialOfferID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UnitPrice]"
+                          dataType="cy"
+                          name="UnitPrice" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UnitPriceDiscount]"
+                          dataType="cy"
+                          name="UnitPriceDiscount" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[LineTotal]"
+                          dataType="numeric"
+                          name="LineTotal"
+                          precision="38"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[rowguid]"
+                          dataType="guid"
+                          name="rowguid" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          name="ModifiedDate" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Created_Dt]"
+                          dataType="dbTimeStamp"
+                          name="Created_Dt" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SSISTrackId]"
+                          dataType="i4"
+                          name="SSISTrackId" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="Origem OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[Sales].[SalesOrderDetail]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                      connectionManagerRefId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
+                          name="SalesOrderID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderDetailID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderDetailID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderDetailID]"
+                          name="SalesOrderDetailID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CarrierTrackingNumber]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CarrierTrackingNumber]"
+                          length="25"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CarrierTrackingNumber]"
+                          name="CarrierTrackingNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]"
+                          dataType="i2"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderQty]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]"
+                          name="OrderQty"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductID]"
+                          name="ProductID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SpecialOfferID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SpecialOfferID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SpecialOfferID]"
+                          name="SpecialOfferID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPrice]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]"
+                          name="UnitPrice"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPriceDiscount]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]"
+                          name="UnitPriceDiscount"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LineTotal]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]"
+                          name="LineTotal"
+                          precision="38"
+                          scale="6"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                          name="rowguid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                          name="ModifiedDate"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
+                          dataType="i4"
+                          name="SalesOrderID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderDetailID]"
+                          dataType="i4"
+                          name="SalesOrderDetailID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CarrierTrackingNumber]"
+                          dataType="wstr"
+                          length="25"
+                          name="CarrierTrackingNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderQty]"
+                          dataType="i2"
+                          name="OrderQty" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductID]"
+                          dataType="i4"
+                          name="ProductID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SpecialOfferID]"
+                          dataType="i4"
+                          name="SpecialOfferID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPrice]"
+                          dataType="cy"
+                          name="UnitPrice" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPriceDiscount]"
+                          dataType="cy"
+                          name="UnitPriceDiscount" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LineTotal]"
+                          dataType="numeric"
+                          name="LineTotal"
+                          precision="38"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                          dataType="guid"
+                          name="rowguid" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          name="ModifiedDate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
+                          name="SalesOrderID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderDetailID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderDetailID]"
+                          name="SalesOrderDetailID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CarrierTrackingNumber]"
+                          dataType="wstr"
+                          length="25"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CarrierTrackingNumber]"
+                          name="CarrierTrackingNumber" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderQty]"
+                          dataType="i2"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderQty]"
+                          name="OrderQty" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductID]"
+                          name="ProductID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SpecialOfferID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SpecialOfferID]"
+                          name="SpecialOfferID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPrice]"
+                          dataType="cy"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPrice]"
+                          name="UnitPrice" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPriceDiscount]"
+                          dataType="cy"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPriceDiscount]"
+                          name="UnitPriceDiscount" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LineTotal]"
+                          dataType="numeric"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LineTotal]"
+                          name="LineTotal"
+                          precision="38"
+                          scale="6" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                          dataType="guid"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                          name="rowguid" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                          name="ModifiedDate" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full.Paths[Saída de Coluna Derivada]"
+                  endId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Coluna Derivada"
+                  startId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Outputs[Saída de Coluna Derivada]" />
+                <path
+                  refId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full.Paths[Saída de Origem OLE DB]"
+                  endId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada.Inputs[Entrada de Coluna Derivada]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{EA682EE6-A52E-48C6-AB7E-3D36DF6B7AD8}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SalesHeader Carregamento Full"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="Destino OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[erp].[SalesHeader]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                      connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SalesOrderID]"
+                          cachedDataType="i4"
+                          cachedName="SalesOrderID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[RevisionNumber]"
+                          cachedDataType="ui1"
+                          cachedName="RevisionNumber"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[RevisionNumber]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[RevisionNumber]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[OrderDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="OrderDate"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[DueDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="DueDate"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DueDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ShipDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ShipDate"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Status]"
+                          cachedDataType="ui1"
+                          cachedName="Status"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Status]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Status]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[OnlineOrderFlag]"
+                          cachedDataType="bool"
+                          cachedName="OnlineOrderFlag"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OnlineOrderFlag]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OnlineOrderFlag]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SalesOrderNumber]"
+                          cachedDataType="wstr"
+                          cachedLength="25"
+                          cachedName="SalesOrderNumber"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderNumber]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderNumber]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[PurchaseOrderNumber]"
+                          cachedDataType="wstr"
+                          cachedLength="25"
+                          cachedName="PurchaseOrderNumber"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[PurchaseOrderNumber]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PurchaseOrderNumber]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[AccountNumber]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="AccountNumber"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[AccountNumber]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[AccountNumber]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[CustomerID]"
+                          cachedDataType="i4"
+                          cachedName="CustomerID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CustomerID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SalesPersonID]"
+                          cachedDataType="i4"
+                          cachedName="SalesPersonID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesPersonID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesPersonID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[TerritoryID]"
+                          cachedDataType="i4"
+                          cachedName="TerritoryID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TerritoryID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[BillToAddressID]"
+                          cachedDataType="i4"
+                          cachedName="BillToAddressID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[BillToAddressID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[BillToAddressID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ShipToAddressID]"
+                          cachedDataType="i4"
+                          cachedName="ShipToAddressID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipToAddressID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipToAddressID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ShipMethodID]"
+                          cachedDataType="i4"
+                          cachedName="ShipMethodID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipMethodID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipMethodID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[CreditCardID]"
+                          cachedDataType="i4"
+                          cachedName="CreditCardID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CreditCardID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CreditCardID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[CreditCardApprovalCode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="CreditCardApprovalCode"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CreditCardApprovalCode]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CreditCardApprovalCode]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[CurrencyRateID]"
+                          cachedDataType="i4"
+                          cachedName="CurrencyRateID"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CurrencyRateID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CurrencyRateID]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SubTotal]"
+                          cachedDataType="cy"
+                          cachedName="SubTotal"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SubTotal]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SubTotal]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[TaxAmt]"
+                          cachedDataType="cy"
+                          cachedName="TaxAmt"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TaxAmt]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Freight]"
+                          cachedDataType="cy"
+                          cachedName="Freight"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Freight]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Freight]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[TotalDue]"
+                          cachedDataType="cy"
+                          cachedName="TotalDue"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TotalDue]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TotalDue]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[Comment]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="Comment"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Comment]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Comment]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[rowguid]"
+                          cachedDataType="guid"
+                          cachedName="rowguid"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[rowguid]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]" />
+                        <inputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ModifiedDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ModifiedDate"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderID]"
+                          dataType="i4"
+                          name="SalesOrderID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[rowguid]"
+                          dataType="guid"
+                          name="rowguid" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          name="ModifiedDate" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[RevisionNumber]"
+                          dataType="ui1"
+                          name="RevisionNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderDate]"
+                          dataType="dbTimeStamp"
+                          name="OrderDate" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DueDate]"
+                          dataType="dbTimeStamp"
+                          name="DueDate" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipDate]"
+                          dataType="dbTimeStamp"
+                          name="ShipDate" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Status]"
+                          dataType="ui1"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OnlineOrderFlag]"
+                          dataType="bool"
+                          name="OnlineOrderFlag" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderNumber]"
+                          dataType="wstr"
+                          length="25"
+                          name="SalesOrderNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[PurchaseOrderNumber]"
+                          dataType="wstr"
+                          length="25"
+                          name="PurchaseOrderNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[AccountNumber]"
+                          dataType="wstr"
+                          length="15"
+                          name="AccountNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CustomerID]"
+                          dataType="i4"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesPersonID]"
+                          dataType="i4"
+                          name="SalesPersonID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TerritoryID]"
+                          dataType="i4"
+                          name="TerritoryID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[BillToAddressID]"
+                          dataType="i4"
+                          name="BillToAddressID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipToAddressID]"
+                          dataType="i4"
+                          name="ShipToAddressID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipMethodID]"
+                          dataType="i4"
+                          name="ShipMethodID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CreditCardID]"
+                          dataType="i4"
+                          name="CreditCardID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CreditCardApprovalCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="CreditCardApprovalCode" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CurrencyRateID]"
+                          dataType="i4"
+                          name="CurrencyRateID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SubTotal]"
+                          dataType="cy"
+                          name="SubTotal" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TaxAmt]"
+                          dataType="cy"
+                          name="TaxAmt" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Freight]"
+                          dataType="cy"
+                          name="Freight" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TotalDue]"
+                          dataType="cy"
+                          name="TotalDue" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[Comment]"
+                          dataType="wstr"
+                          length="128"
+                          name="Comment" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SSIS_ID]"
+                          dataType="i8"
+                          name="SSIS_ID" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="Origem OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[Sales].[SalesOrderHeader]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                      connectionManagerRefId="Package.ConnectionManagers[SMTN010.AdventureWorks2022]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
+                          name="SalesOrderID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[RevisionNumber]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[RevisionNumber]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[RevisionNumber]"
+                          name="RevisionNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]"
+                          name="OrderDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DueDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]"
+                          name="DueDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]"
+                          name="ShipDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Status]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Status]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Status]"
+                          name="Status"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OnlineOrderFlag]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OnlineOrderFlag]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OnlineOrderFlag]"
+                          name="OnlineOrderFlag"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderNumber]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderNumber]"
+                          length="25"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderNumber]"
+                          name="SalesOrderNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PurchaseOrderNumber]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[PurchaseOrderNumber]"
+                          length="25"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[PurchaseOrderNumber]"
+                          name="PurchaseOrderNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[AccountNumber]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[AccountNumber]"
+                          length="15"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[AccountNumber]"
+                          name="AccountNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CustomerID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]"
+                          name="CustomerID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesPersonID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesPersonID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesPersonID]"
+                          name="SalesPersonID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                          name="TerritoryID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[BillToAddressID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[BillToAddressID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[BillToAddressID]"
+                          name="BillToAddressID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipToAddressID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipToAddressID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipToAddressID]"
+                          name="ShipToAddressID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipMethodID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipMethodID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipMethodID]"
+                          name="ShipMethodID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CreditCardID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CreditCardID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CreditCardID]"
+                          name="CreditCardID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CreditCardApprovalCode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CreditCardApprovalCode]"
+                          length="15"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CreditCardApprovalCode]"
+                          name="CreditCardApprovalCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CurrencyRateID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CurrencyRateID]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CurrencyRateID]"
+                          name="CurrencyRateID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SubTotal]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SubTotal]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SubTotal]"
+                          name="SubTotal"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TaxAmt]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]"
+                          name="TaxAmt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Freight]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Freight]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Freight]"
+                          name="Freight"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TotalDue]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TotalDue]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TotalDue]"
+                          name="TotalDue"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Comment]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Comment]"
+                          length="128"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Comment]"
+                          name="Comment"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[rowguid]"
+                          name="rowguid"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ModifiedDate]"
+                          name="ModifiedDate"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
+                          dataType="i4"
+                          name="SalesOrderID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[RevisionNumber]"
+                          dataType="ui1"
+                          name="RevisionNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderDate]"
+                          dataType="dbTimeStamp"
+                          name="OrderDate" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DueDate]"
+                          dataType="dbTimeStamp"
+                          name="DueDate" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipDate]"
+                          dataType="dbTimeStamp"
+                          name="ShipDate" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Status]"
+                          dataType="ui1"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OnlineOrderFlag]"
+                          dataType="bool"
+                          name="OnlineOrderFlag" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderNumber]"
+                          dataType="wstr"
+                          length="25"
+                          name="SalesOrderNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[PurchaseOrderNumber]"
+                          dataType="wstr"
+                          length="25"
+                          name="PurchaseOrderNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[AccountNumber]"
+                          dataType="wstr"
+                          length="15"
+                          name="AccountNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CustomerID]"
+                          dataType="i4"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesPersonID]"
+                          dataType="i4"
+                          name="SalesPersonID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                          dataType="i4"
+                          name="TerritoryID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[BillToAddressID]"
+                          dataType="i4"
+                          name="BillToAddressID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipToAddressID]"
+                          dataType="i4"
+                          name="ShipToAddressID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipMethodID]"
+                          dataType="i4"
+                          name="ShipMethodID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CreditCardID]"
+                          dataType="i4"
+                          name="CreditCardID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CreditCardApprovalCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="CreditCardApprovalCode" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CurrencyRateID]"
+                          dataType="i4"
+                          name="CurrencyRateID" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SubTotal]"
+                          dataType="cy"
+                          name="SubTotal" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TaxAmt]"
+                          dataType="cy"
+                          name="TaxAmt" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Freight]"
+                          dataType="cy"
+                          name="Freight" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TotalDue]"
+                          dataType="cy"
+                          name="TotalDue" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Comment]"
+                          dataType="wstr"
+                          length="128"
+                          name="Comment" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[rowguid]"
+                          dataType="guid"
+                          name="rowguid" />
+                        <externalMetadataColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          name="ModifiedDate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
+                          name="SalesOrderID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[RevisionNumber]"
+                          dataType="ui1"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[RevisionNumber]"
+                          name="RevisionNumber" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderDate]"
+                          name="OrderDate" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DueDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DueDate]"
+                          name="DueDate" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipDate]"
+                          name="ShipDate" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Status]"
+                          dataType="ui1"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OnlineOrderFlag]"
+                          dataType="bool"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OnlineOrderFlag]"
+                          name="OnlineOrderFlag" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderNumber]"
+                          dataType="wstr"
+                          length="25"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderNumber]"
+                          name="SalesOrderNumber" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[PurchaseOrderNumber]"
+                          dataType="wstr"
+                          length="25"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[PurchaseOrderNumber]"
+                          name="PurchaseOrderNumber" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[AccountNumber]"
+                          dataType="wstr"
+                          length="15"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[AccountNumber]"
+                          name="AccountNumber" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CustomerID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CustomerID]"
+                          name="CustomerID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesPersonID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesPersonID]"
+                          name="SalesPersonID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                          name="TerritoryID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[BillToAddressID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[BillToAddressID]"
+                          name="BillToAddressID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipToAddressID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipToAddressID]"
+                          name="ShipToAddressID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipMethodID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipMethodID]"
+                          name="ShipMethodID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CreditCardID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CreditCardID]"
+                          name="CreditCardID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CreditCardApprovalCode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CreditCardApprovalCode]"
+                          name="CreditCardApprovalCode" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CurrencyRateID]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CurrencyRateID]"
+                          name="CurrencyRateID" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SubTotal]"
+                          dataType="cy"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SubTotal]"
+                          name="SubTotal" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TaxAmt]"
+                          dataType="cy"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TaxAmt]"
+                          name="TaxAmt" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Freight]"
+                          dataType="cy"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Freight]"
+                          name="Freight" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TotalDue]"
+                          dataType="cy"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TotalDue]"
+                          name="TotalDue" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Comment]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Comment]"
+                          name="Comment" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                          dataType="guid"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[rowguid]"
+                          name="rowguid" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ModifiedDate]"
+                          name="ModifiedDate" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full.Paths[Saída de Origem OLE DB]"
+                  endId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Carregamento completo ou Primeiro Carregamento\Truncando erpSalesDetail"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{9807AAB0-BEF0-465A-857F-E7E9FBF1DD1F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncando erpSalesDetail"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D4EAD5C5-1919-4975-9F31-33E70A6EF65C}"
+              SQLTask:SqlStatementSource="truncate table erp.SalesOrderDetail" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Carregamento completo ou Primeiro Carregamento\Truncando erpSalesHeader"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{8641418D-5FF2-4D3B-A913-6257F4020612}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncando erpSalesHeader"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D4EAD5C5-1919-4975-9F31-33E70A6EF65C}"
+              SQLTask:SqlStatementSource="truncate table erp.SalesHeader" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Carregamento completo ou Primeiro Carregamento.PrecedenceConstraints[Restrição]"
+          DTS:CreationName=""
+          DTS:DTSID="{E32D5FAC-429C-4275-9C3D-3F08D1623C80}"
+          DTS:From="Package\Carregamento completo ou Primeiro Carregamento\Truncando erpSalesHeader"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição"
+          DTS:To="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Carregamento completo ou Primeiro Carregamento.PrecedenceConstraints[Restrição 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{D44202A7-6484-4AB3-8FE5-3FB1E86D0991}"
+          DTS:From="Package\Carregamento completo ou Primeiro Carregamento\Truncando erpSalesDetail"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restrição 1"
+          DTS:To="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Carregamento Incremental"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{7E2E127F-C687-4445-B4D6-40C442773564}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carregamento Incremental">
+      <DTS:Variables />
+      <DTS:Executables />
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa de Expressão"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Tarefa de Expressão"
+      DTS:DTSID="{90DFD3B5-E4A7-4C3B-8E08-F13DF7662171}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa de Expressão"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="1==1" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{DE2AEC91-EC66-4919-9C5D-F27A53790644}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[$Package::is_fisrt_time] == 1"
+      DTS:From="Package\Tarefa de Expressão"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\Carregamento completo ou Primeiro Carregamento" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{8A564071-9A72-495D-B3E9-4831C610B2B2}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[$Package::is_fisrt_time] == 0"
+      DTS:From="Package\Tarefa de Expressão"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 1"
+      DTS:To="Package\Carregamento Incremental" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Carregamento completo ou Primeiro Carregamento\Truncando erpSalesHeader"
+          TopLeft="11,6" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full"
+          TopLeft="21,77" />
+        <EdgeLayout
+          Id="Package\Carregamento completo ou Primeiro Carregamento.PrecedenceConstraints[Restrição]"
+          TopLeft="114,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.5,29"
+              Start="0,0"
+              End="20.5,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="16.5,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.5,14.5"
+                    Point2="20.5,14.5"
+                    Point3="20.5,18.5" />
+                  <mssgle:LineSegment
+                    End="20.5,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Carregamento completo ou Primeiro Carregamento\Truncando erpSalesDetail"
+          TopLeft="263,7" />
+        <NodeLayout
+          Size="220,42"
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full"
+          TopLeft="269,77" />
+        <EdgeLayout
+          Id="Package\Carregamento completo ou Primeiro Carregamento.PrecedenceConstraints[Restrição 1]"
+          TopLeft="362.5,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16.5,28"
+              Start="0,0"
+              End="16.5,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10"
+                    Point2="0,14"
+                    Point3="4,14" />
+                  <mssgle:LineSegment
+                    End="12.5,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.5,14"
+                    Point2="16.5,14"
+                    Point3="16.5,18" />
+                  <mssgle:LineSegment
+                    End="16.5,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="516,152"
+          Size="516,195"
+          Id="Package\Carregamento completo ou Primeiro Carregamento"
+          TopLeft="472,156" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="439,193"
+          Size="439,236"
+          Id="Package\Carregamento Incremental"
+          TopLeft="14,152" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Tarefa de Expressão"
+          TopLeft="243,28" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="330.5,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="399.5,86"
+              Start="0,0"
+              End="399.5,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38"
+                    Point2="0,42"
+                    Point3="4,42" />
+                  <mssgle:LineSegment
+                    End="395.5,42" />
+                  <mssgle:CubicBezierSegment
+                    Point1="395.5,42"
+                    Point2="399.5,42"
+                    Point3="399.5,46" />
+                  <mssgle:LineSegment
+                    End="399.5,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="191.75,47,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 1]"
+          TopLeft="302.666666666667,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-69.1666666666667,82"
+              Start="0,0"
+              End="-69.1666666666667,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.2457531143828" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.2457531143828"
+                    Point2="0,33.2457531143828"
+                    Point3="-4,33.2457531143828" />
+                  <mssgle:LineSegment
+                    End="-65.1666666666667,33.2457531143828" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-65.1666666666667,33.2457531143828"
+                    Point2="-69.1666666666667,33.2457531143828"
+                    Point3="-69.1666666666667,37.2457531143828" />
+                  <mssgle:LineSegment
+                    End="-69.1666666666667,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-42.5833333333333,38.2457531143828,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB"
+          TopLeft="141,29" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB"
+          TopLeft="141,152" />
+        <EdgeLayout
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full.Paths[Saída de Origem OLE DB]"
+          TopLeft="217.25,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81"
+              Start="0,0"
+              End="0,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB"
+          TopLeft="116,24" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB"
+          TopLeft="138,213" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Coluna Derivada"
+          TopLeft="261,110" />
+        <EdgeLayout
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full.Paths[Saída de Origem OLE DB]"
+          TopLeft="192,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="147,44"
+              Start="0,0"
+              End="147,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
+                  <mssgle:LineSegment
+                    End="143,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="143,22"
+                    Point2="147,22"
+                    Point3="147,26" />
+                  <mssgle:LineSegment
+                    End="147,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full.Paths[Saída de Coluna Derivada]"
+          TopLeft="339,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-124.5,61"
+              Start="0,0"
+              End="-124.5,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="-4,30.5" />
+                  <mssgle:LineSegment
+                    End="-120.5,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-120.5,30.5"
+                    Point2="-124.5,30.5"
+                    Point3="-124.5,34.5" />
+                  <mssgle:LineSegment
+                    End="-124.5,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carregamento completo ou Primeiro Carregamento\SalesHeader Carregamento Full\Destino OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carregamento completo ou Primeiro Carregamento\SalesDetail Carregamento Full\Destino OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
