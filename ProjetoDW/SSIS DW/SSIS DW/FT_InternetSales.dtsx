@@ -11,33 +11,21 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{FB88D7AB-9FF0-4C82-8096-6FA55C880AEA}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{202A7342-EEDC-43BD-A3DA-B7DDE1885491}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{F0BEAA8F-42D8-4750-B48D-16510AF99FC0}"
+      DTS:DTSID="{E3F1223E-4CDE-426D-B6AA-8AFAFDAD6570}"
       DTS:ObjectName="SMTN010.AWN_DW_Demo">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=AWN_DW_Demo;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{F0BEAA8F-42D8-4750-B48D-16510AF99FC0}SMTN010.AWN_DW_Demo;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo 1]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{BA085976-38C6-403A-9B17-21247EFCDA52}"
-      DTS:ObjectName="SMTN010.AWN_DW_Demo 1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=AWN_DW_Demo;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{BA085976-38C6-403A-9B17-21247EFCDA52}SMTN010.AWN_DW_Demo 1;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=AWN_DW_Demo;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{E3F1223E-4CDE-426D-B6AA-8AFAFDAD6570}SMTN010.AWN_DW_Demo;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -70,11 +58,109 @@
           version="1">
           <components>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup Currency"
+              refId="Package\Tarefa Fluxo de Dados\Destino OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Destino OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Connections[OleDbConnection]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
-              name="Lookup Currency"
+              name="Lookup CurrencyKey"
               usesDispositions="true"
               version="6">
               <properties>
@@ -138,7 +224,7 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup Currency.Connections[OleDbConnection]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -146,11 +232,11 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup Currency.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup Currency.Inputs[Entrada de Pesquisa].Columns[Currency]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa].Columns[Currency]"
                       cachedDataType="wstr"
                       cachedLength="3"
                       cachedName="Currency"
@@ -172,56 +258,55 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup Currency.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída de Correspondência de Pesquisa].Columns[ID_CurrencyAlternateKey]"
-                      dataType="wstr"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CurrencyKey]"
+                      dataType="i4"
                       errorOrTruncationOperation="Copiar Coluna"
-                      length="3"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída de Correspondência de Pesquisa].Columns[ID_CurrencyAlternateKey]"
-                      name="ID_CurrencyAlternateKey"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CurrencyKey]"
+                      name="CurrencyKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
-                          name="CopyFromReferenceColumn">CurrencyAlternateKey</property>
+                          name="CopyFromReferenceColumn">CurrencyKey</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup Currency.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup Currency.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -337,22 +422,6 @@ where [refTable].[CustomerKey] = ?</property>
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
                   synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Inputs[Entrada de Pesquisa]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CustomerKey]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copiar Coluna"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CustomerKey]"
-                      name="CustomerKey"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
-                          name="CopyFromReferenceColumn">CustomerKey</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
@@ -388,11 +457,11 @@ where [refTable].[CustomerKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup DueKey"
+              refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
-              name="Lookup DueKey"
+              name="Lookup DueDateKey"
               usesDispositions="true"
               version="6">
               <properties>
@@ -456,7 +525,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Connections[OleDbConnection]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -464,11 +533,11 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Inputs[Entrada de Pesquisa].Columns[DueDate]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa].Columns[DueDate]"
                       cachedDataType="dbDate"
                       cachedName="DueDate"
                       lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]">
@@ -489,55 +558,55 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída de Correspondência de Pesquisa].Columns[Due_FullDateAlternateKey]"
-                      dataType="dbDate"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[DueDateKey]"
+                      dataType="i4"
                       errorOrTruncationOperation="Copiar Coluna"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída de Correspondência de Pesquisa].Columns[Due_FullDateAlternateKey]"
-                      name="Due_FullDateAlternateKey"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[DueDateKey]"
+                      name="DueDateKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
-                          name="CopyFromReferenceColumn">FullDateAlternateKey</property>
+                          name="CopyFromReferenceColumn">DateKey</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -546,11 +615,11 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey"
+              refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
-              name="Lookup OrderKey"
+              name="Lookup OrderDateKey"
               usesDispositions="true"
               version="6">
               <properties>
@@ -614,7 +683,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Connections[OleDbConnection]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -622,11 +691,11 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Inputs[Entrada de Pesquisa].Columns[OrderDate]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa].Columns[OrderDate]"
                       cachedDataType="dbDate"
                       cachedName="OrderDate"
                       lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]">
@@ -647,55 +716,55 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída de Correspondência de Pesquisa].Columns[Order_FullDateAlternateKey]"
-                      dataType="dbDate"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[OrderDateKey]"
+                      dataType="i4"
                       errorOrTruncationOperation="Copiar Coluna"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída de Correspondência de Pesquisa].Columns[Order_FullDateAlternateKey]"
-                      name="Order_FullDateAlternateKey"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[OrderDateKey]"
+                      name="OrderDateKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
-                          name="CopyFromReferenceColumn">FullDateAlternateKey</property>
+                          name="CopyFromReferenceColumn">DateKey</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -724,7 +793,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
                   expressionType="Notify"
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimProduct]) [refTable]
-where [refTable].[ProductKey] = ?</property>
+where [refTable].[ProductAlternateKey] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica o tipo de conexão usado para acessar o conjunto de dados de referência."
@@ -760,7 +829,7 @@ where [refTable].[ProductKey] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
-                  name="ParameterMap">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]};</property>
+                  name="ParameterMap">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]};</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
@@ -773,8 +842,8 @@ where [refTable].[ProductKey] = ?</property>
               <connections>
                 <connection
                   refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo 1]"
-                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo 1]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
                   name="OleDbConnection" />
               </connections>
@@ -784,15 +853,16 @@ where [refTable].[ProductKey] = ?</property>
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa].Columns[TaxAmt]"
-                      cachedDataType="i4"
-                      cachedName="TaxAmt"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]">
+                      refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa].Columns[ProductNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="ProductNumber"
+                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Especifica a coluna na tabela de referência que uma coluna une."
-                          name="JoinToReferenceColumn">ProductKey</property>
+                          name="JoinToReferenceColumn">ProductAlternateKey</property>
                         <property
                           dataType="System.Null"
                           description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
@@ -862,11 +932,11 @@ where [refTable].[ProductKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate"
+              refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
-              name="Lookup ShipDate"
+              name="Lookup ShipDateKey"
               usesDispositions="true"
               version="6">
               <properties>
@@ -930,7 +1000,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Connections[OleDbConnection]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -938,11 +1008,11 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Inputs[Entrada de Pesquisa].Columns[ShipDate]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa].Columns[ShipDate]"
                       cachedDataType="dbDate"
                       cachedName="ShipDate"
                       lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]">
@@ -963,55 +1033,55 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída de Correspondência de Pesquisa].Columns[Ship_FullDateAlternateKey]"
-                      dataType="dbDate"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ShipDateKey]"
+                      dataType="i4"
                       errorOrTruncationOperation="Copiar Coluna"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída de Correspondência de Pesquisa].Columns[Ship_FullDateAlternateKey]"
-                      name="Ship_FullDateAlternateKey"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ShipDateKey]"
+                      name="ShipDateKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
-                          name="CopyFromReferenceColumn">FullDateAlternateKey</property>
+                          name="CopyFromReferenceColumn">DateKey</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1393,32 +1463,37 @@ where [refTable].[FullDateAlternateKey] = ?</property>
           <paths>
             <path
               refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Inputs[Entrada de Pesquisa]"
+              endId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]"
+              name="Saída de Correspondência de Pesquisa"
+              startId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa1]"
+              endId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]"
+              name="Saída de Correspondência de Pesquisa"
+              startId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa2]"
+              endId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]"
+              name="Saída de Correspondência de Pesquisa"
+              startId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa3]"
+              endId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Inputs[Entrada de Pesquisa]"
+              name="Saída de Correspondência de Pesquisa"
+              startId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa4]"
+              endId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa]"
+              name="Saída de Correspondência de Pesquisa"
+              startId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Correspondência de Pesquisa]" />
+            <path
+              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa5]"
+              endId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
               name="Saída de Correspondência de Pesquisa"
               startId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa]" />
             <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa1]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Inputs[Entrada de Pesquisa]"
-              name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup ShipDate.Outputs[Saída de Correspondência de Pesquisa]" />
-            <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa2]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Inputs[Entrada de Pesquisa]"
-              name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup OrderKey.Outputs[Saída de Correspondência de Pesquisa]" />
-            <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa3]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup Currency.Inputs[Entrada de Pesquisa]"
-              name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup DueKey.Outputs[Saída de Correspondência de Pesquisa]" />
-            <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa4]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Inputs[Entrada de Pesquisa]"
-              name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup Currency.Outputs[Saída de Correspondência de Pesquisa]" />
-            <path
               refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa]"
+              endId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]"
               name="Saída de Origem OLE DB"
               startId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
           </paths>
@@ -1451,27 +1526,27 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="182,42"
+          Id="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey"
+          TopLeft="5.50000000000001,107.5" />
+        <NodeLayout
           Size="152,42"
           Id="Package\Tarefa Fluxo de Dados\Origem OLE DB"
-          TopLeft="71,18" />
-        <NodeLayout
-          Size="169,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup ProductKey"
-          TopLeft="57,108" />
+          TopLeft="20.5,5.5" />
         <EdgeLayout
           Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
-          TopLeft="144.25,60">
+          TopLeft="96.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,40.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1481,148 +1556,199 @@ where [refTable].[FullDateAlternateKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="159,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup ShipDate"
-          TopLeft="60,208" />
+          Size="174,42"
+          Id="Package\Tarefa Fluxo de Dados\Lookup DueDateKey"
+          TopLeft="9.50000000000003,209.5" />
         <NodeLayout
-          Size="160,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup OrderKey"
-          TopLeft="53,299" />
+          Size="176,42"
+          Id="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey"
+          TopLeft="8.50000000000004,311.5" />
         <NodeLayout
-          Size="152,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup DueKey"
-          TopLeft="55,402" />
+          Size="175,42"
+          Id="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey"
+          TopLeft="9.00000000000006,413.5" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Tarefa Fluxo de Dados\Lookup CustomerKey"
+          TopLeft="7.50000000000007,515.5" />
         <EdgeLayout
           Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa]"
-          TopLeft="140.5,150">
+          TopLeft="96.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,58"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,50.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-85.3740234375,19.15234375,170.748046875,12.1953125"
+              BoundingBox="-85.3740234375,20.15234375,170.748046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa1]"
-          TopLeft="136.25,250">
+          TopLeft="96.5,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,49"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,41.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-85.3740234375,14.65234375,170.748046875,12.1953125"
+              BoundingBox="-85.3740234375,20.15234375,170.748046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa2]"
-          TopLeft="132,341">
+          TopLeft="96.5000000000001,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,61"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,53.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-85.3740234375,20.65234375,170.748046875,12.1953125"
+              BoundingBox="-85.3740234375,20.15234375,170.748046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="158,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup Currency"
-          TopLeft="56,502" />
-        <NodeLayout
-          Size="178,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup CustomerKey"
-          TopLeft="422,507" />
         <EdgeLayout
           Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa3]"
-          TopLeft="133,444">
+          TopLeft="96.5000000000001,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,58"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,50.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-85.3740234375,19.15234375,170.748046875,12.1953125"
+              BoundingBox="-85.3740234375,20.15234375,170.748046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Tarefa Fluxo de Dados\Lookup ProductKey"
+          TopLeft="12.0000000000001,617.5" />
         <EdgeLayout
           Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa4]"
-          TopLeft="214,525.5">
+          TopLeft="96.5000000000001,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="208,0"
+              EndConnector="0,60"
               Start="0,0"
-              End="200.5,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="200.5,0" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="14.8759765625,5,170.748046875,12.1953125"
+              BoundingBox="-85.3740234375,20.15234375,170.748046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Tarefa Fluxo de Dados\Destino OLE DB"
+          TopLeft="20.0000000000001,719.5" />
+        <EdgeLayout
+          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa5]"
+          TopLeft="96.5000000000001,659.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-85.3740234375,20.15234375,170.748046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Tarefa Fluxo de Dados\Origem OLE DB">
     <Properties>
@@ -1637,30 +1763,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup ProductKey">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimProduct]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup ShipDate">
+    design-time-name="Package\Tarefa Fluxo de Dados\Lookup DueDateKey">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1683,7 +1786,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup OrderKey">
+    design-time-name="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1706,30 +1809,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup DueKey">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimDate]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup Currency">
+    design-time-name="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1763,6 +1843,29 @@ where [refTable].[FullDateAlternateKey] = ?</property>
         <Name>UsedTableName</Name>
         <Value
           type="q3:string">[dbo].[DimCustomer]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Tarefa Fluxo de Dados\Lookup ProductKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimProduct]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
