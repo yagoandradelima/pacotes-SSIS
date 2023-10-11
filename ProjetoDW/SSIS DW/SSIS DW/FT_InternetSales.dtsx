@@ -11,8 +11,8 @@
   DTS:LocaleID="1046"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{202A7342-EEDC-43BD-A3DA-B7DDE1885491}">
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{100693C2-0160-4A35-882A-C4CDD9A28466}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -44,13 +44,13 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Tarefa Fluxo de Dados"
+      DTS:refId="Package\Load Fact Sales"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Tarefa Fluxo de Dados"
       DTS:DTSID="{77145CEF-2E1F-4F41-A471-EC31375B19D7}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Tarefa Fluxo de Dados"
+      DTS:ObjectName="Load Fact Sales"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -58,7 +58,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Destino OLE DB"
+              refId="Package\Load Fact Sales\Destino OLE DB"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
               description="Destino OLE DB"
@@ -73,7 +73,7 @@
                 <property
                   dataType="System.String"
                   description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
-                  name="OpenRowset"></property>
+                  name="OpenRowset">[dbo].[FactInternetSales]</property>
                 <property
                   dataType="System.String"
                   description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
@@ -95,7 +95,7 @@
                   dataType="System.Int32"
                   description="Especifica o modo usado para acessar o banco de dados."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
@@ -107,7 +107,7 @@
                 <property
                   dataType="System.String"
                   description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
-                  name="FastLoadOptions"></property>
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
@@ -115,39 +115,217 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Connections[OleDbConnection]"
+                  refId="Package\Load Fact Sales\Destino OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+                  refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
                   errorOrTruncationOperation="Inserir"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[OrderDate]"
+                      cachedDataType="dbDate"
+                      cachedName="OrderDate"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderDate]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[DueDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DueDate"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DueDate]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ShipDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ShipDate"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipDate]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[TaxAmt]"
+                      cachedDataType="i4"
+                      cachedName="TaxAmt"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TaxAmt]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[OrderDateKey]"
+                      cachedDataType="i4"
+                      cachedName="OrderDateKey"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderDateKey]"
+                      lineageId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[OrderDateKey]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ShipDateKey]"
+                      cachedDataType="i4"
+                      cachedName="ShipDateKey"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipDateKey]"
+                      lineageId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ShipDateKey]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[CurrencyKey]"
+                      cachedDataType="i4"
+                      cachedName="CurrencyKey"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CurrencyKey]"
+                      lineageId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CurrencyKey]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[ProductKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductKey"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ProductKey]"
+                      lineageId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ProductKey]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CustomerKey]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[OrderQty]"
+                      cachedDataType="i2"
+                      cachedName="OrderQty"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderQuantity]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SalesOrderID]"
+                      cachedDataType="i4"
+                      cachedName="SalesOrderID"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderNumber]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[SalesTerritoryKey]"
+                      cachedDataType="i4"
+                      cachedName="SalesTerritoryKey"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesTerritoryKey]"
+                      lineageId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Correspondência de Pesquisa].Columns[SalesTerritoryKey]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[saleLineNumber]"
+                      cachedDataType="i8"
+                      cachedName="saleLineNumber"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderLineNumber]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[saleLineNumber]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[UnitPriceDiscount]"
+                      cachedDataType="cy"
+                      cachedName="UnitPriceDiscount"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DiscountAmount]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[LineTotal]"
+                      cachedDataType="numeric"
+                      cachedName="LineTotal"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesAmount]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].Columns[DueDateKey]"
+                      cachedDataType="i4"
+                      cachedName="DueDateKey"
+                      externalMetadataColumnId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DueDateKey]"
+                      lineageId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[DueDateKey]" />
+                  </inputColumns>
                   <externalMetadataColumns
-                    isUsed="True" />
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderDateKey]"
+                      dataType="i4"
+                      name="OrderDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DueDateKey]"
+                      dataType="i4"
+                      name="DueDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipDateKey]"
+                      dataType="i4"
+                      name="ShipDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CustomerKey]"
+                      dataType="i4"
+                      name="CustomerKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[CurrencyKey]"
+                      dataType="i4"
+                      name="CurrencyKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesTerritoryKey]"
+                      dataType="i4"
+                      name="SalesTerritoryKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderNumber]"
+                      dataType="wstr"
+                      length="20"
+                      name="SalesOrderNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesOrderLineNumber]"
+                      dataType="ui1"
+                      name="SalesOrderLineNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderQuantity]"
+                      dataType="i2"
+                      name="OrderQuantity" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DiscountAmount]"
+                      dataType="r8"
+                      name="DiscountAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[SalesAmount]"
+                      dataType="cy"
+                      name="SalesAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[TaxAmt]"
+                      dataType="cy"
+                      name="TaxAmt" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[DueDate]"
+                      dataType="dbTimeStamp"
+                      name="DueDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB].ExternalColumns[ShipDate]"
+                      dataType="dbTimeStamp"
+                      name="ShipDate" />
+                  </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
+                  refId="Package\Load Fact Sales\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Destino OLE DB"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
+                  synchronousInputId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      refId="Package\Load Fact Sales\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      lineageId="Package\Load Fact Sales\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      refId="Package\Load Fact Sales\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      lineageId="Package\Load Fact Sales\Destino OLE DB.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -156,7 +334,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey"
+              refId="Package\Load Fact Sales\Lookup CurrencyKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
@@ -212,7 +390,7 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
-                  name="ParameterMap">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]};</property>
+                  name="ParameterMap">#{Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]};</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
@@ -224,7 +402,7 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Connections[OleDbConnection]"
+                  refId="Package\Load Fact Sales\Lookup CurrencyKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -232,15 +410,15 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa].Columns[Currency]"
+                      refId="Package\Load Fact Sales\Lookup CurrencyKey.Inputs[Entrada de Pesquisa].Columns[Currency]"
                       cachedDataType="wstr"
                       cachedLength="3"
                       cachedName="Currency"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]">
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -258,18 +436,18 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CurrencyKey]"
+                      refId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CurrencyKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copiar Coluna"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CurrencyKey]"
+                      lineageId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CurrencyKey]"
                       name="CurrencyKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -283,30 +461,30 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -315,7 +493,7 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey"
+              refId="Package\Load Fact Sales\Lookup CustomerKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
@@ -335,7 +513,7 @@ where [refTable].[CurrencyAlternateKey] = ?</property>
                   expressionType="Notify"
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimCustomer]) [refTable]
-where [refTable].[CustomerKey] = ?</property>
+where [refTable].[CustomerAlternateKey] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica o tipo de conexão usado para acessar o conjunto de dados de referência."
@@ -371,7 +549,7 @@ where [refTable].[CustomerKey] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
-                  name="ParameterMap">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]};</property>
+                  name="ParameterMap">#{Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]};</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
@@ -383,7 +561,7 @@ where [refTable].[CustomerKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Connections[OleDbConnection]"
+                  refId="Package\Load Fact Sales\Lookup CustomerKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -391,19 +569,19 @@ where [refTable].[CustomerKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup CustomerKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Inputs[Entrada de Pesquisa].Columns[CustomerID]"
+                      refId="Package\Load Fact Sales\Lookup CustomerKey.Inputs[Entrada de Pesquisa].Columns[CustomerID]"
                       cachedDataType="i4"
                       cachedName="CustomerID"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]">
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Especifica a coluna na tabela de referência que uma coluna une."
-                          name="JoinToReferenceColumn">CustomerKey</property>
+                          name="JoinToReferenceColumn">CustomerAlternateKey</property>
                         <property
                           dataType="System.Null"
                           description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
@@ -416,39 +594,55 @@ where [refTable].[CustomerKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup CustomerKey.Inputs[Entrada de Pesquisa]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CustomerKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copiar Coluna"
+                      lineageId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída de Correspondência de Pesquisa].Columns[CustomerKey]"
+                      name="CustomerKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
+                          name="CopyFromReferenceColumn">CustomerKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup CustomerKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup CustomerKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -457,7 +651,7 @@ where [refTable].[CustomerKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey"
+              refId="Package\Load Fact Sales\Lookup DueDateKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
@@ -513,7 +707,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
-                  name="ParameterMap">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]};</property>
+                  name="ParameterMap">#{Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]};</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
@@ -525,7 +719,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Connections[OleDbConnection]"
+                  refId="Package\Load Fact Sales\Lookup DueDateKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -533,14 +727,14 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup DueDateKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa].Columns[DueDate]"
+                      refId="Package\Load Fact Sales\Lookup DueDateKey.Inputs[Entrada de Pesquisa].Columns[DueDate]"
                       cachedDataType="dbDate"
                       cachedName="DueDate"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]">
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -558,18 +752,18 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup DueDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[DueDateKey]"
+                      refId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[DueDateKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copiar Coluna"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[DueDateKey]"
+                      lineageId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[DueDateKey]"
                       name="DueDateKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -583,30 +777,30 @@ where [refTable].[FullDateAlternateKey] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup DueDateKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup DueDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -615,7 +809,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey"
+              refId="Package\Load Fact Sales\Lookup OrderDateKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
@@ -671,7 +865,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
-                  name="ParameterMap">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]};</property>
+                  name="ParameterMap">#{Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]};</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
@@ -683,7 +877,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Connections[OleDbConnection]"
+                  refId="Package\Load Fact Sales\Lookup OrderDateKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -691,14 +885,14 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa].Columns[OrderDate]"
+                      refId="Package\Load Fact Sales\Lookup OrderDateKey.Inputs[Entrada de Pesquisa].Columns[OrderDate]"
                       cachedDataType="dbDate"
                       cachedName="OrderDate"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]">
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -716,18 +910,18 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[OrderDateKey]"
+                      refId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[OrderDateKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copiar Coluna"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[OrderDateKey]"
+                      lineageId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[OrderDateKey]"
                       name="OrderDateKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -741,30 +935,30 @@ where [refTable].[FullDateAlternateKey] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -773,7 +967,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey"
+              refId="Package\Load Fact Sales\Lookup ProductKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
@@ -829,7 +1023,7 @@ where [refTable].[ProductAlternateKey] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
-                  name="ParameterMap">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]};</property>
+                  name="ParameterMap">#{Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]};</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
@@ -841,7 +1035,7 @@ where [refTable].[ProductAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Connections[OleDbConnection]"
+                  refId="Package\Load Fact Sales\Lookup ProductKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -849,15 +1043,15 @@ where [refTable].[ProductAlternateKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup ProductKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa].Columns[ProductNumber]"
+                      refId="Package\Load Fact Sales\Lookup ProductKey.Inputs[Entrada de Pesquisa].Columns[ProductNumber]"
                       cachedDataType="wstr"
                       cachedLength="25"
                       cachedName="ProductNumber"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]">
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -875,18 +1069,18 @@ where [refTable].[ProductAlternateKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup ProductKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ProductKey]"
+                      refId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ProductKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copiar Coluna"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ProductKey]"
+                      lineageId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ProductKey]"
                       name="ProductKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -900,30 +1094,30 @@ where [refTable].[ProductAlternateKey] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup ProductKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup ProductKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -932,7 +1126,165 @@ where [refTable].[ProductAlternateKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey"
+              refId="Package\Load Fact Sales\Lookup SalesTerritoryKey"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
+              description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
+              name="Lookup SalesTerritoryKey"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica a instrução SQL que gera a tabela de pesquisa."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimSalesTerritory]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica uma instrução SQL que usa parâmetros para gerar a tabela de pesquisa."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimSalesTerritory]) [refTable]
+where [refTable].[SalesTerritoryAlternateKey] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o tipo de conexão usado para acessar o conjunto de dados de referência."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o tipo de cache da tabela de pesquisa."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica como a transformação Pesquisa trata as linhas sem entradas correspondentes no conjunto de dados de referência."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a porcentagem do cache alocada para linhas sem entradas correspondentes no conjunto de dados de referência."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso Máximo de Memória para o Cache de Referência em uma plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso Máximo de Memória para o Cache de Referência em uma plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica se os metadados de referência em um formato XML devem ser referenciados."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SalesTerritoryKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SalesTerritoryAlternateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SalesTerritoryRegion" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SalesTerritoryCountry" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SalesTerritoryGroup" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SalesTerritoryImage" dataType="DT_IMAGE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
+                  name="ParameterMap">#{Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina se as chaves duplicadas nos dados de referência devem ser tratadas como erros quando o modo de cache cheio é usado."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
+                  description="O gerenciador de conexões usado para acessar dados de pesquisa."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Inputs[Entrada de Pesquisa]"
+                  name="Entrada de Pesquisa">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Inputs[Entrada de Pesquisa].Columns[TerritoryID]"
+                      cachedDataType="i4"
+                      cachedName="TerritoryID"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica a coluna na tabela de referência que uma coluna une."
+                          name="JoinToReferenceColumn">SalesTerritoryAlternateKey</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Correspondência de Pesquisa]"
+                  errorOrTruncationOperation="Pesquisa"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Saída de Correspondência de Pesquisa"
+                  synchronousInputId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Inputs[Entrada de Pesquisa]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Correspondência de Pesquisa].Columns[SalesTerritoryKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copiar Coluna"
+                      lineageId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Correspondência de Pesquisa].Columns[SalesTerritoryKey]"
+                      name="SalesTerritoryKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
+                          name="CopyFromReferenceColumn">SalesTerritoryKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
+                  exclusionGroup="1"
+                  name="Saída Sem Correspondência de Pesquisa"
+                  synchronousInputId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Inputs[Entrada de Pesquisa]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Erro de Pesquisa]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Pesquisa"
+                  synchronousInputId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Inputs[Entrada de Pesquisa]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fact Sales\Lookup ShipDateKey"
               componentClassID="Microsoft.Lookup"
               contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
               description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
@@ -988,7 +1340,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
-                  name="ParameterMap">#{Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]};</property>
+                  name="ParameterMap">#{Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]};</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
@@ -1000,7 +1352,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Connections[OleDbConnection]"
+                  refId="Package\Load Fact Sales\Lookup ShipDateKey.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_DW_Demo]"
                   description="O gerenciador de conexões usado para acessar dados de pesquisa."
@@ -1008,14 +1360,14 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]"
                   name="Entrada de Pesquisa">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa].Columns[ShipDate]"
+                      refId="Package\Load Fact Sales\Lookup ShipDateKey.Inputs[Entrada de Pesquisa].Columns[ShipDate]"
                       cachedDataType="dbDate"
                       cachedName="ShipDate"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]">
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -1033,18 +1385,18 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa]"
                   errorOrTruncationOperation="Pesquisa"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Saída de Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ShipDateKey]"
+                      refId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ShipDateKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copiar Coluna"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ShipDateKey]"
+                      lineageId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa].Columns[ShipDateKey]"
                       name="ShipDateKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -1058,30 +1410,30 @@ where [refTable].[FullDateAlternateKey] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída Sem Correspondência de Pesquisa]"
                   description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
                   exclusionGroup="1"
                   name="Saída Sem Correspondência de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa]"
+                  refId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Saída de Erro de Pesquisa"
-                  synchronousInputId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]">
+                  synchronousInputId="Package\Load Fact Sales\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      refId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      lineageId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      refId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      lineageId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1090,7 +1442,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Tarefa Fluxo de Dados\Origem OLE DB"
+              refId="Package\Load Fact Sales\Origem OLE DB"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
               description="Origem OLE DB"
@@ -1139,7 +1491,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Connections[OleDbConnection]"
+                  refId="Package\Load Fact Sales\Origem OLE DB.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
                   connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
                   description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
@@ -1147,311 +1499,311 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               </connections>
               <outputs>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
                   name="Saída de Origem OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
                       name="SalesOrderID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[saleLineNumber]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[saleLineNumber]"
                       dataType="i8"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[saleLineNumber]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[saleLineNumber]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[saleLineNumber]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[saleLineNumber]"
                       name="saleLineNumber"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductNumber]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductNumber]"
                       length="25"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]"
                       name="ProductNumber"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]"
                       dataType="dbDate"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderDate]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderDate]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]"
                       name="OrderDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]"
                       dataType="dbDate"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DueDate]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DueDate]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]"
                       name="DueDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]"
                       dataType="dbDate"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipDate]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipDate]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]"
                       name="ShipDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CustomerID]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CustomerID]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CustomerID]"
                       name="CustomerID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
                       name="TerritoryID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Currency]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Currency]"
                       length="3"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]"
                       name="Currency"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[RevisionNumber]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[RevisionNumber]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[RevisionNumber]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[RevisionNumber]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[RevisionNumber]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[RevisionNumber]"
                       name="RevisionNumber"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]"
                       dataType="i2"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderQty]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderQty]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]"
                       name="OrderQty"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]"
                       dataType="cy"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPrice]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]"
                       name="UnitPrice"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]"
                       dataType="cy"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPriceDiscount]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPriceDiscount]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]"
                       name="UnitPriceDiscount"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LineTotal]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LineTotal]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]"
                       name="LineTotal"
                       precision="38"
                       scale="6"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversão"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TaxAmt]"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]"
+                      externalMetadataColumnId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TaxAmt]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]"
                       name="TaxAmt"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
                       dataType="i4"
                       name="SalesOrderID" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[saleLineNumber]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[saleLineNumber]"
                       dataType="i8"
                       name="saleLineNumber" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductNumber]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductNumber]"
                       dataType="wstr"
                       length="25"
                       name="ProductNumber" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderDate]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderDate]"
                       dataType="dbDate"
                       name="OrderDate" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DueDate]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DueDate]"
                       dataType="dbDate"
                       name="DueDate" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipDate]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipDate]"
                       dataType="dbDate"
                       name="ShipDate" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CustomerID]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CustomerID]"
                       dataType="i4"
                       name="CustomerID" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
                       dataType="i4"
                       name="TerritoryID" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Currency]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Currency]"
                       dataType="wstr"
                       length="3"
                       name="Currency" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[RevisionNumber]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[RevisionNumber]"
                       dataType="i4"
                       name="RevisionNumber" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderQty]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderQty]"
                       dataType="i2"
                       name="OrderQty" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPrice]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPrice]"
                       dataType="cy"
                       name="UnitPrice" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPriceDiscount]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPriceDiscount]"
                       dataType="cy"
                       name="UnitPriceDiscount" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LineTotal]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LineTotal]"
                       dataType="numeric"
                       name="LineTotal"
                       precision="38"
                       scale="6" />
                     <externalMetadataColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TaxAmt]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TaxAmt]"
                       dataType="i4"
                       name="TaxAmt" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
                   isErrorOut="true"
                   name="Saída de Erro de Origem OLE DB">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
                       name="SalesOrderID" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[saleLineNumber]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[saleLineNumber]"
                       dataType="i8"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[saleLineNumber]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[saleLineNumber]"
                       name="saleLineNumber" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductNumber]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductNumber]"
                       dataType="wstr"
                       length="25"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductNumber]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductNumber]"
                       name="ProductNumber" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderDate]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderDate]"
                       dataType="dbDate"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderDate]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderDate]"
                       name="OrderDate" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DueDate]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DueDate]"
                       dataType="dbDate"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DueDate]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DueDate]"
                       name="DueDate" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipDate]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipDate]"
                       dataType="dbDate"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipDate]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipDate]"
                       name="ShipDate" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CustomerID]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CustomerID]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CustomerID]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CustomerID]"
                       name="CustomerID" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
                       name="TerritoryID" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Currency]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Currency]"
                       dataType="wstr"
                       length="3"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Currency]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Currency]"
                       name="Currency" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[RevisionNumber]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[RevisionNumber]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[RevisionNumber]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[RevisionNumber]"
                       name="RevisionNumber" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderQty]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderQty]"
                       dataType="i2"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderQty]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderQty]"
                       name="OrderQty" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPrice]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPrice]"
                       dataType="cy"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPrice]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPrice]"
                       name="UnitPrice" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPriceDiscount]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPriceDiscount]"
                       dataType="cy"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPriceDiscount]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPriceDiscount]"
                       name="UnitPriceDiscount" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LineTotal]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LineTotal]"
                       dataType="numeric"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LineTotal]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LineTotal]"
                       name="LineTotal"
                       precision="38"
                       scale="6" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TaxAmt]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TaxAmt]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TaxAmt]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TaxAmt]"
                       name="TaxAmt" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      refId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      lineageId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1462,45 +1814,623 @@ where [refTable].[FullDateAlternateKey] = ?</property>
           </components>
           <paths>
             <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Inputs[Entrada de Pesquisa]"
+              refId="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa]"
+              endId="Package\Load Fact Sales\Lookup DueDateKey.Inputs[Entrada de Pesquisa]"
               name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa]" />
+              startId="Package\Load Fact Sales\Lookup OrderDateKey.Outputs[Saída de Correspondência de Pesquisa]" />
             <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa1]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]"
+              refId="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa1]"
+              endId="Package\Load Fact Sales\Lookup ShipDateKey.Inputs[Entrada de Pesquisa]"
               name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa]" />
+              startId="Package\Load Fact Sales\Lookup DueDateKey.Outputs[Saída de Correspondência de Pesquisa]" />
             <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa2]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]"
+              refId="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa2]"
+              endId="Package\Load Fact Sales\Lookup CurrencyKey.Inputs[Entrada de Pesquisa]"
               name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa]" />
+              startId="Package\Load Fact Sales\Lookup ShipDateKey.Outputs[Saída de Correspondência de Pesquisa]" />
             <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa3]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Inputs[Entrada de Pesquisa]"
+              refId="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa3]"
+              endId="Package\Load Fact Sales\Lookup CustomerKey.Inputs[Entrada de Pesquisa]"
               name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa]" />
+              startId="Package\Load Fact Sales\Lookup CurrencyKey.Outputs[Saída de Correspondência de Pesquisa]" />
             <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa4]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Inputs[Entrada de Pesquisa]"
+              refId="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa4]"
+              endId="Package\Load Fact Sales\Lookup ProductKey.Inputs[Entrada de Pesquisa]"
               name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup CustomerKey.Outputs[Saída de Correspondência de Pesquisa]" />
+              startId="Package\Load Fact Sales\Lookup CustomerKey.Outputs[Saída de Correspondência de Pesquisa]" />
             <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa5]"
-              endId="Package\Tarefa Fluxo de Dados\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+              refId="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa5]"
+              endId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Inputs[Entrada de Pesquisa]"
               name="Saída de Correspondência de Pesquisa"
-              startId="Package\Tarefa Fluxo de Dados\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa]" />
+              startId="Package\Load Fact Sales\Lookup ProductKey.Outputs[Saída de Correspondência de Pesquisa]" />
             <path
-              refId="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
-              endId="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]"
+              refId="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa6]"
+              endId="Package\Load Fact Sales\Destino OLE DB.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Correspondência de Pesquisa"
+              startId="Package\Load Fact Sales\Lookup SalesTerritoryKey.Outputs[Saída de Correspondência de Pesquisa]" />
+            <path
+              refId="Package\Load Fact Sales.Paths[Saída de Origem OLE DB]"
+              endId="Package\Load Fact Sales\Lookup OrderDateKey.Inputs[Entrada de Pesquisa]"
               name="Saída de Origem OLE DB"
-              startId="Package\Tarefa Fluxo de Dados\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              startId="Package\Load Fact Sales\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Reseller Sales Fact"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{155A60AE-E944-4BAD-8117-4DB5B82AE577}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Reseller Sales Fact"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Reseller Sales Fact\Origem OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[Stg_vw_Erp_Fact_ResellerSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Reseller Sales Fact\Origem OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  connectionManagerRefId="Package.ConnectionManagers[SMTN010.AWN_STG_Demo]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderDate]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderDate]"
+                      name="OrderDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DueDate]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DueDate]"
+                      name="DueDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipDate]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ShipDate]"
+                      name="ShipDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SalesOrderID]"
+                      name="SalesOrderID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[saleLineNumber]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[saleLineNumber]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[saleLineNumber]"
+                      name="saleLineNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductNumber]"
+                      length="25"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ProductNumber]"
+                      name="ProductNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ResellerID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ResellerID]"
+                      length="15"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ResellerID]"
+                      name="ResellerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TerritoryID]"
+                      name="TerritoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NationalIDNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NationalIDNumber]"
+                      length="15"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NationalIDNumber]"
+                      name="NationalIDNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Currency]"
+                      length="3"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[Currency]"
+                      name="Currency"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[RevisionNumber]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[RevisionNumber]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[RevisionNumber]"
+                      name="RevisionNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderQty]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[OrderQty]"
+                      name="OrderQty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPriceDiscount]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UnitPriceDiscount]"
+                      name="UnitPriceDiscount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LineTotal]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[LineTotal]"
+                      name="LineTotal"
+                      precision="38"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TaxAmt]"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TaxAmt]"
+                      name="TaxAmt"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DueDate]"
+                      dataType="dbTimeStamp"
+                      name="DueDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ShipDate]"
+                      dataType="dbTimeStamp"
+                      name="ShipDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SalesOrderID]"
+                      dataType="i4"
+                      name="SalesOrderID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[saleLineNumber]"
+                      dataType="i8"
+                      name="saleLineNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ProductNumber]"
+                      dataType="wstr"
+                      length="25"
+                      name="ProductNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ResellerID]"
+                      dataType="wstr"
+                      length="15"
+                      name="ResellerID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TerritoryID]"
+                      dataType="i4"
+                      name="TerritoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NationalIDNumber]"
+                      dataType="wstr"
+                      length="15"
+                      name="NationalIDNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[Currency]"
+                      dataType="wstr"
+                      length="3"
+                      name="Currency" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[RevisionNumber]"
+                      dataType="i4"
+                      name="RevisionNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[OrderQty]"
+                      dataType="i2"
+                      name="OrderQty" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UnitPriceDiscount]"
+                      dataType="cy"
+                      name="UnitPriceDiscount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[LineTotal]"
+                      dataType="numeric"
+                      name="LineTotal"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TaxAmt]"
+                      dataType="i4"
+                      name="TaxAmt" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
+                      dataType="i4"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SalesOrderID]"
+                      name="SalesOrderID" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[saleLineNumber]"
+                      dataType="i8"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[saleLineNumber]"
+                      name="saleLineNumber" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductNumber]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ProductNumber]"
+                      name="ProductNumber" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderDate]"
+                      name="OrderDate" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DueDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DueDate]"
+                      name="DueDate" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ResellerID]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ResellerID]"
+                      name="ResellerID" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                      dataType="i4"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TerritoryID]"
+                      name="TerritoryID" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NationalIDNumber]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NationalIDNumber]"
+                      name="NationalIDNumber" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Currency]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[Currency]"
+                      name="Currency" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[RevisionNumber]"
+                      dataType="i4"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[RevisionNumber]"
+                      name="RevisionNumber" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderQty]"
+                      dataType="i2"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[OrderQty]"
+                      name="OrderQty" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ShipDate]"
+                      name="ShipDate" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPriceDiscount]"
+                      dataType="cy"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UnitPriceDiscount]"
+                      name="UnitPriceDiscount" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LineTotal]"
+                      dataType="numeric"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[LineTotal]"
+                      name="LineTotal"
+                      precision="38"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TaxAmt]"
+                      dataType="i4"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TaxAmt]"
+                      name="TaxAmt" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Reseller Sales Fact\Pesquisa"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
+              description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
+              name="Pesquisa"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica a instrução SQL que gera a tabela de pesquisa."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica uma instrução SQL que usa parâmetros para gerar a tabela de pesquisa."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o tipo de conexão usado para acessar o conjunto de dados de referência."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o tipo de cache da tabela de pesquisa."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica como a transformação Pesquisa trata as linhas sem entradas correspondentes no conjunto de dados de referência."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a porcentagem do cache alocada para linhas sem entradas correspondentes no conjunto de dados de referência."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso Máximo de Memória para o Cache de Referência em uma plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso Máximo de Memória para o Cache de Referência em uma plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica se os metadados de referência em um formato XML devem ser referenciados."
+                  name="ReferenceMetadataXml"></property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
+                  name="ParameterMap"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina se as chaves duplicadas nos dados de referência devem ser tratadas como erros quando o modo de cache cheio é usado."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Reseller Sales Fact\Pesquisa.Connections[OleDbConnection]"
+                  description="O gerenciador de conexões usado para acessar dados de pesquisa."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Reseller Sales Fact\Pesquisa.Inputs[Entrada de Pesquisa]"
+                  name="Entrada de Pesquisa">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Reseller Sales Fact\Pesquisa.Outputs[Saída de Correspondência de Pesquisa]"
+                  errorOrTruncationOperation="Pesquisa"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Saída de Correspondência de Pesquisa"
+                  synchronousInputId="Package\Load Reseller Sales Fact\Pesquisa.Inputs[Entrada de Pesquisa]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Reseller Sales Fact\Pesquisa.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
+                  exclusionGroup="1"
+                  name="Saída Sem Correspondência de Pesquisa"
+                  synchronousInputId="Package\Load Reseller Sales Fact\Pesquisa.Inputs[Entrada de Pesquisa]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Reseller Sales Fact\Pesquisa.Outputs[Saída de Erro de Pesquisa]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Pesquisa"
+                  synchronousInputId="Package\Load Reseller Sales Fact\Pesquisa.Inputs[Entrada de Pesquisa]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Pesquisa.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Reseller Sales Fact\Pesquisa.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Reseller Sales Fact\Pesquisa.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Reseller Sales Fact\Pesquisa.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Reseller Sales Fact.Paths[Saída de Origem OLE DB]"
+              endId="Package\Load Reseller Sales Fact\Pesquisa.Inputs[Entrada de Pesquisa]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Load Reseller Sales Fact\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Executar SQL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{086655D3-85B3-4BB7-899B-600ACDA7A565}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Executar SQL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{6226D27B-5F25-4AA2-84F9-13003572E4ED}"
+      DTS:From="Package\Load Fact Sales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\Load Reseller Sales Fact" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{69B1AD28-C753-427D-875B-BD41A6B998FF}"
+      DTS:From="Package\Load Reseller Sales Fact"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 1"
+      DTS:To="Package\Tarefa Executar SQL" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
 <!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
@@ -1512,30 +2442,130 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="185,42"
-          Id="Package\Tarefa Fluxo de Dados"
-          TopLeft="198,98" />
+          Size="152,42"
+          Id="Package\Load Fact Sales"
+          TopLeft="132,108" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Load Reseller Sales Fact"
+          TopLeft="218,218" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="208,150">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="106.5,68"
+              Start="0,0"
+              End="106.5,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30"
+                    Point2="0,34"
+                    Point3="4,34" />
+                  <mssgle:LineSegment
+                    End="102.5,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="102.5,34"
+                    Point2="106.5,34"
+                    Point3="106.5,38" />
+                  <mssgle:LineSegment
+                    End="106.5,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Tarefa Executar SQL"
+          TopLeft="152,336" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 1]"
+          TopLeft="314.5,260">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-74.5,76"
+              Start="0,0"
+              End="-74.5,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34"
+                    Point2="0,38"
+                    Point3="-4,38" />
+                  <mssgle:LineSegment
+                    End="-70.5,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-70.5,38"
+                    Point2="-74.5,38"
+                    Point3="-74.5,42" />
+                  <mssgle:LineSegment
+                    End="-74.5,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Tarefa Fluxo de Dados">
+    design-time-name="Package\Load Fact Sales">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="182,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey"
-          TopLeft="5.50000000000001,107.5" />
+          Size="174,42"
+          Id="Package\Load Fact Sales\Lookup DueDateKey"
+          TopLeft="17.5,209.5" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Load Fact Sales\Lookup ProductKey"
+          TopLeft="20.0000000000001,617.5" />
         <NodeLayout
           Size="152,42"
-          Id="Package\Tarefa Fluxo de Dados\Origem OLE DB"
-          TopLeft="20.5,5.5" />
+          Id="Package\Load Fact Sales\Origem OLE DB"
+          TopLeft="28.5,5.5" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Load Fact Sales\Lookup CustomerKey"
+          TopLeft="15.5000000000001,515.5" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Load Fact Sales\Lookup OrderDateKey"
+          TopLeft="13.5,107.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Load Fact Sales\Lookup ShipDateKey"
+          TopLeft="16.5,311.5" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Load Fact Sales\Destino OLE DB"
+          TopLeft="25.0000000000001,840.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Load Fact Sales\Lookup CurrencyKey"
+          TopLeft="17.0000000000001,413.5" />
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Origem OLE DB]"
-          TopLeft="96.5,47.5">
+          Id="Package\Load Fact Sales.Paths[Saída de Origem OLE DB]"
+          TopLeft="104.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1555,25 +2585,9 @@ where [refTable].[FullDateAlternateKey] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup DueDateKey"
-          TopLeft="9.50000000000003,209.5" />
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey"
-          TopLeft="8.50000000000004,311.5" />
-        <NodeLayout
-          Size="175,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey"
-          TopLeft="9.00000000000006,413.5" />
-        <NodeLayout
-          Size="178,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup CustomerKey"
-          TopLeft="7.50000000000007,515.5" />
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa]"
-          TopLeft="96.5,149.5">
+          Id="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa4]"
+          TopLeft="104.5,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1596,8 +2610,8 @@ where [refTable].[FullDateAlternateKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa1]"
-          TopLeft="96.5,251.5">
+          Id="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa3]"
+          TopLeft="104.5,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1620,8 +2634,8 @@ where [refTable].[FullDateAlternateKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa2]"
-          TopLeft="96.5000000000001,353.5">
+          Id="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa2]"
+          TopLeft="104.5,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1644,8 +2658,8 @@ where [refTable].[FullDateAlternateKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa3]"
-          TopLeft="96.5000000000001,455.5">
+          Id="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa1]"
+          TopLeft="104.5,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1667,13 +2681,9 @@ where [refTable].[FullDateAlternateKey] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="169,42"
-          Id="Package\Tarefa Fluxo de Dados\Lookup ProductKey"
-          TopLeft="12.0000000000001,617.5" />
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa4]"
-          TopLeft="96.5000000000001,557.5">
+          Id="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa]"
+          TopLeft="104.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1696,12 +2706,12 @@ where [refTable].[FullDateAlternateKey] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="153,42"
-          Id="Package\Tarefa Fluxo de Dados\Destino OLE DB"
-          TopLeft="20.0000000000001,719.5" />
+          Size="198,42"
+          Id="Package\Load Fact Sales\Lookup SalesTerritoryKey"
+          TopLeft="5.5000000000001,719.5" />
         <EdgeLayout
-          Id="Package\Tarefa Fluxo de Dados.Paths[Saída de Correspondência de Pesquisa5]"
-          TopLeft="96.5000000000001,659.5">
+          Id="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa5]"
+          TopLeft="104.5,659.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1720,6 +2730,30 @@ where [refTable].[FullDateAlternateKey] = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-85.3740234375,20.15234375,170.748046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Saída de Correspondência de Pesquisa6]"
+          TopLeft="103,761.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-85.3740234375,29.65234375,170.748046875,12.1953125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1727,7 +2761,30 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup OrderDateKey">
+    design-time-name="Package\Load Fact Sales\Lookup DueDateKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Lookup ProductKey">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1737,7 +2794,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimDate]</Value>
+          type="q3:string">[dbo].[DimProduct]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -1750,7 +2807,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Origem OLE DB">
+    design-time-name="Package\Load Fact Sales\Origem OLE DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1763,7 +2820,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup DueDateKey">
+    design-time-name="Package\Load Fact Sales\Lookup CustomerKey">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1773,12 +2830,12 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimDate]</Value>
+          type="q3:string">[dbo].[DimCustomer]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1786,12 +2843,12 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup ShipDateKey">
+    design-time-name="Package\Load Fact Sales\Lookup OrderDateKey">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1801,7 +2858,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1809,7 +2866,43 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup CurrencyKey">
+    design-time-name="Package\Load Fact Sales\Lookup ShipDateKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Destino OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Lookup CurrencyKey">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1832,7 +2925,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup CustomerKey">
+    design-time-name="Package\Load Fact Sales\Lookup SalesTerritoryKey">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1842,7 +2935,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimCustomer]</Value>
+          type="q3:string">[dbo].[DimSalesTerritory]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -1854,26 +2947,66 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Reseller Sales Fact">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Load Reseller Sales Fact\Origem OLE DB"
+          TopLeft="106,101" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Load Reseller Sales Fact\Pesquisa"
+          TopLeft="114,201" />
+        <EdgeLayout
+          Id="Package\Load Reseller Sales Fact.Paths[Saída de Origem OLE DB]"
+          TopLeft="182,143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8,58"
+              Start="0,0"
+              End="-8,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="-4,29" />
+                  <mssgle:LineSegment
+                    End="-4,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4,29"
+                    Point2="-8,29"
+                    Point3="-8,33" />
+                  <mssgle:LineSegment
+                    End="-8,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Tarefa Fluxo de Dados\Lookup ProductKey">
+    design-time-name="Package\Load Reseller Sales Fact\Origem OLE DB">
     <Properties>
       <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimProduct]</Value>
+        <Name>DataSourceViewID</Name>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
+          type="q2:string">View</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

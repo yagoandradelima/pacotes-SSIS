@@ -1,0 +1,9 @@
+-- CÓDIGO SQL PARA AUXILIAR NA PASSAGEM DO SOURCE PARA O STAGE
+TRUNCATE TABLE[stg].[Cliente]
+TRUNCATE TABLE[stg].[DadosPedidos]
+TRUNCATE TABLE[stg].[Data]
+TRUNCATE TABLE[stg].[Geolocalizacao]
+TRUNCATE TABLE[stg].[Loja]
+TRUNCATE TABLE[stg].[Pedidos]
+TRUNCATE TABLE[stg].[Produto]
+TRUNCATE TABLE[stg].[TrocaMoeda]

@@ -1,0 +1,319 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/11/2023 5:35:43 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SMTN010"
+  DTS:CreatorName="SACAVALCANTE\yandrade"
+  DTS:DTSID="{EDC9EBB2-4A90-47AD-9C5E-2719E3561131}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5314.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package2"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{0D5ACCA5-9CCB-43A2-A41E-B6E6D7028386}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTN010.DataWarehouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{137411AD-C393-47EF-BCEF-95DC6423C8BF}"
+      DTS:ObjectName="SMTN010.DataWarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SMTN010;Initial Catalog=DataWarehouse;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package2-{137411AD-C393-47EF-BCEF-95DC6423C8BF}SMTN010.DataWarehouse;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Atualização DimClientes"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{d9e6aa45-4b7f-4a8c-aaee-9fbb81db6a8f}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Atualização DimClientes">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Atualização DimClientes\Tarefa Executar SQL"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{837a2094-2cc7-4def-b2fa-af09e15c5a62}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarefa Executar SQL"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{137411AD-C393-47EF-BCEF-95DC6423C8BF}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[Atualizacao_DimClientes]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Atualização DimLoja"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{4eca2fa8-b011-4e8b-9a86-1a5b5c22c3bb}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Atualização DimLoja">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Atualização DimLoja\Procedure DimLoja"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{1A604842-EE6D-4FAA-B256-07D57E9B5396}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Procedure DimLoja"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{137411AD-C393-47EF-BCEF-95DC6423C8BF}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[Atualizacao_DimLoja]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Atualzação DimProdutos"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{04d966f2-45ac-4795-b933-0a0aafc78e85}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Atualzação DimProdutos">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Atualzação DimProdutos\procedure DimProduto"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{b82e1025-f2f9-4db2-a755-60667889177c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="procedure DimProduto"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{137411AD-C393-47EF-BCEF-95DC6423C8BF}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[Atualizacao_DimProduto]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa de Expressão"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Tarefa de Expressão"
+      DTS:DTSID="{329253cd-ced0-472a-a9fd-bee40e5465f6}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa de Expressão"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="1==1" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{9e1879b7-6ba4-470d-b541-919683ed236d}"
+      DTS:From="Package\Tarefa de Expressão"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\Atualzação DimProdutos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{248fcb37-2ab2-4026-8328-9bb3c1b6d896}"
+      DTS:From="Package\Tarefa de Expressão"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 1"
+      DTS:To="Package\Atualização DimClientes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{3d3d947c-e814-4923-a6b7-ded95740e91f}"
+      DTS:From="Package\Tarefa de Expressão"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 2"
+      DTS:To="Package\Atualização DimLoja" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Tarefa de Expressão"
+          TopLeft="522.952380952381,192.857142857143" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Atualização DimClientes\Tarefa Executar SQL"
+          TopLeft="27,21" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="234,87"
+          Size="234,130"
+          Id="Package\Atualização DimClientes"
+          TopLeft="481.833333333333,362" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Atualização DimLoja\Procedure DimLoja"
+          TopLeft="29,21" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="232,89"
+          Size="232,132"
+          Id="Package\Atualização DimLoja"
+          TopLeft="738.666666666667,359.333333333333" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Atualzação DimProdutos\procedure DimProduto"
+          TopLeft="20,28" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="224,85"
+          Size="224,128"
+          Id="Package\Atualzação DimProdutos"
+          TopLeft="236,369" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="568.702380952381,234.857142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-220.702380952381,134.142857142857"
+              Start="0,0"
+              End="-220.702380952381,126.642857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.0565532028947" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.0565532028947"
+                    Point2="0,46.0565532028947"
+                    Point3="-4,46.0565532028947" />
+                  <mssgle:LineSegment
+                    End="-216.702380952381,46.0565532028947" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-216.702380952381,46.0565532028947"
+                    Point2="-220.702380952381,46.0565532028947"
+                    Point3="-220.702380952381,50.0565532028947" />
+                  <mssgle:LineSegment
+                    End="-220.702380952381,126.642857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 1]"
+          TopLeft="610.452380952381,234.857142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.6190476190482,127.142857142857"
+              Start="0,0"
+              End="-11.6190476190482,119.642857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5714285714286" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59.5714285714286"
+                    Point2="0,63.5714285714286"
+                    Point3="-4,63.5714285714286" />
+                  <mssgle:LineSegment
+                    End="-7.61904761904816,63.5714285714286" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.61904761904816,63.5714285714286"
+                    Point2="-11.6190476190482,63.5714285714286"
+                    Point3="-11.6190476190482,67.5714285714286" />
+                  <mssgle:LineSegment
+                    End="-11.6190476190482,119.642857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 2]"
+          TopLeft="652.202380952381,234.857142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="202.464285714286,124.47619047619"
+              Start="0,0"
+              End="202.464285714286,116.97619047619">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.737603859555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.737603859555"
+                    Point2="0,42.737603859555"
+                    Point3="4,42.737603859555" />
+                  <mssgle:LineSegment
+                    End="198.464285714286,42.737603859555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="198.464285714286,42.737603859555"
+                    Point2="202.464285714286,42.737603859555"
+                    Point3="202.464285714286,46.737603859555" />
+                  <mssgle:LineSegment
+                    End="202.464285714286,116.97619047619" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

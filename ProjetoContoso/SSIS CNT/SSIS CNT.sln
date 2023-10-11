@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "SSIS CNT", "SSIS CNT\SSIS CNT.dtproj", "{E216164A-A76A-4964-BD23-75CDF6FE784D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E216164A-A76A-4964-BD23-75CDF6FE784D}.Development|Default.ActiveCfg = Development
+		{E216164A-A76A-4964-BD23-75CDF6FE784D}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A20D201D-47F3-4F3D-B6AE-07CCD4AACFF0}
+	EndGlobalSection
+EndGlobal
