@@ -46,7 +46,9 @@ LEFT JOIN [stg].[Geolocalizacao] G ON G.[Cod_País] = C.[País] AND C.[Estado] = G
 CREATE VIEW [dbo].[Stg_vw_Fato_Pedidos] AS
 	SELECT 
 		P.[ID_Pedido]
+		,DENSE_RANK() OVER (  ORDER BY [Numero_linha],p.[ID_Pedido] ) AS ID_Pedido_SK
 		,DP.[ID_Produto]
+		,[Numero_linha]
 		,P.[ID_Cliente]
 		,P.[ID_Loja]
 		,P.[Data_Pedido]
@@ -62,14 +64,3 @@ CREATE VIEW [dbo].[Stg_vw_Fato_Pedidos] AS
 
 
 
-SELECT DISTINCT
-	DENSE_RANK() OVER (ORDER BY C.[Cidade], G.[Cod_Estado], G.[Cod_País]) AS ID_Geolocalizacao
-	,C.[Cidade]
-	,G.[Cod_Estado]
-	,G.[Estado]
-	,G.[Cod_País]
-	,G.[País]
-	,C.[Continente]
-	FROM [stg].[Cliente] C
-LEFT JOIN [stg].[Geolocalizacao] G ON G.[Cod_País] = C.[País] AND C.[Estado] = G.[Cod_Estado]
-	ORDER BY ID_Geolocalizacao
